@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login Inventarios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/css/login_style.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>Gestión de Inventarios</h2>
+        <form method="post" onsubmit="return validarFormulario(event)" >
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" id="usuario" name="usuario" placeholder="Usuario" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" name="password" placeholder="Contraseña" required>
+            </div>
+            <button type="submit">Ingresar
+                <i class="fas fa-sign-in-alt"></i>
+            </button>
+        </form>
+        <a href="register.html">¿No tienes cuenta? Regístrate</a>
+    </div>
+    <script src="/js/login.js"></script>
+</body>
+
+</html>

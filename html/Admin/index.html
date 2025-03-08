@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Index</title>
+    <link rel="stylesheet" href="/css/index_admin.css">
+    <link rel="stylesheet" href="/css/recommed.css">
+    <link rel="stylesheet" href="/css/table.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">Stock - Mastery</div>
+        <div class="user-info">
+            <span class="user-name" id="resultNombre">Nombre del Usuario</span>
+            <span class="user-email" id="resultEmail">correo@example.com</span>
+        </div>
+    </nav>
+
+    <div class="navigation-bar">
+        <div class="logo-container">
+            <img src="/img/Logo Panda.png" alt="Logo" class="logo-img">
+        </div>
+        <nav class="vertical-menu">
+            <ul>
+                <li>
+                    <a href="index.html">
+                        <i class="bi bi-house-door-fill"></i>
+                        Inicio
+                    </a>
+                </li>
+                <li>
+                    <a type="button" href="/html/Admin/generate_buy.html">
+                        <img src="/img/ventas (1).png" class="generar-venta"> </img>
+                        Generar Venta
+                    </a>
+                </li>
+                <li
+                <li>
+                    <a href="#">
+                        <i class="bi bi-cash-coin"></i>
+                        Ingresos
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="bi bi-card-checklist">
+                            Inventario
+                        </i>
+                    </a>
+                    <ul class="submenu">
+                        <div class="options-inventory sub-options">
+                            <li>
+                                <a href="#">
+                                    <i class="bi bi-pen-fill"></i>
+                                    Modificar Stock
+                                </a>
+                            </li>
+
+                        </div>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="bi bi-stars"></i>
+                        Productos de temporada
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <br>
+
+    <div class="recommend">
+        <div class="mac-window">
+            <div class="mac-header">
+                <span class="mac-dot red"></span>
+                <span class="mac-dot yellow"></span>
+                <span class="mac-dot green"></span>
+            </div>
+            <div class="mac-content">
+                <h2><i class="fa-solid fa-box"></i> Productos que siguen en STOCK.</h2>
+            </div>
+            <div class="recommend-2">
+                <h3><i class="fa-solid fa-comment"></i> Los siguientes productos llevan tiempo en inventario.
+                    Se recomienda revisarlos para posibles promociones o liquidaciones.</h3>
+            </div>
+        </div>
+    </div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Temporada</th>
+                <th>Precio (c/u)</th> 
+                <th>Fecha de ingreso</th>
+                <th>Fecha de última compra</th>
+                <th>Hora de última compra</th>
+            </tr>
+        </thead>
+    </table>
+
+    <script src="/js/post-script.js"></script>
+</body>
+
+</html>

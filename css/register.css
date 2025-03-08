@@ -1,0 +1,195 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #fbfcfc, #6c757d);
+    color: #333; /* Color de texto oscuro para contraste */
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+/*Para reducir el tamaño del icono colocdo*/
+i{
+    font-size: 29px;
+}
+/* Estilos para el encabezado */
+h1 {
+    color: #218838; /* Verde forestal */
+    text-align: center;
+}
+
+/* Estilos para el formulario */
+form {
+    background-color: #ffffff; /* Fondo blanco */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+/* Estilos para las etiquetas */
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #218838; /* Verde forestal */
+}
+
+/* Estilos para los inputs y textarea */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+/* Estilos para los botones */
+button, input[type="reset"] {
+    background-color: #218838; /* Verde forestal */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    
+}
+
+.botones-container {
+    text-align: center; /* Centra los botones horizontalmente */
+    margin-top: 10px; /* Espacio arriba de los botones */
+}
+
+button:hover, input[type="reset"]:hover {
+    background-color: #1c6b1c; /* Verde más oscuro al pasar el mouse */
+    text-align: center;
+}
+
+/* Estilos para la imagen */
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 20px auto;
+    border-radius: 8px;
+}
+
+/* Estilos para el párrafo */
+p {
+    text-align: center;
+    color: #228B22; /* Verde forestal */
+    font-style: italic;
+}
+/* Estilos para el mensaje de éxito */
+.mensaje-exito {
+    color: green;
+    font-weight: bold;
+    background-color: #e6ffe6;
+    padding: 10px;
+    border: 1px solid green;
+    border-radius: 5px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.mensajePassword {
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.mensaje-valido {
+    border: 2px solid green;
+    background-color: #e6ffe6;
+    color: green;
+}
+
+/* Estilo cuando las contraseñas no coinciden */
+.mensaje-invalido {
+    border: 2px solid red;
+    background-color: #ffe6e6;
+    color: red;
+}
+
+
+
+/* Para colocar el diseño de ventana mac en registrarse */
+.recommend {
+    display: flex;
+    justify-content: center; /* Centra el contenido en el eje horizontal */
+    align-items: center;
+    margin-top: 10px;
+    min-height: 50px;
+    max-width: 100%; /* Permite que se ajuste al tamaño de la pantalla */
+    margin-left: auto; /* Centra horizontalmente */
+    margin-right: auto; /* Centra horizontalmente */
+}
+
+
+.mac-window {
+    width:400px;
+    max-width: 80%; /* Permite que se reduzca en pantallas pequeñas */
+    /* Ajusta el tamaño de la ventana */
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    border: 1px solid rgb(228, 225, 225);
+    display: flex;
+    flex-direction: column;
+    /* Asegura que los elementos estén en columna */
+}
+
+
+
+.mac-header {
+    display: flex;
+    align-items: center;
+    background: #f3f5f7;
+    padding: 5px 10px;
+    border-bottom: 1px solid rgb(228, 225, 225);
+}
+
+
+
+
+.mac-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+
+
+.red {
+    background: #ff5f56;
+}
+
+.yellow {
+    background: #ffbd2e;
+}
+
+.green {
+    background: #27c93f;
+}
+
+.mac-content {
+    padding: -5px;
+    color: #005b50;
+    text-align: center;
+    /* Cambio de alineación */
+    line-height: 1.5;
+    /* Mejora la legibilidad */
+}
