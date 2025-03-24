@@ -11,6 +11,10 @@
     min-height: 50px; /* Se ajusta mejor en pantallas pequeñas */
     max-width: 85%; /* Evita que ocupe todo el ancho */
     margin-left: 225px;
+    h2 {
+        font-weight: bold;
+    }    
+   
 }
 
 
@@ -81,11 +85,8 @@
     justify-content: center;
     text-align: center;
     padding: 17px;
-}
-
-.recommend-2 h3 {
-    font-size: 15px; /* Tamaño de fuente ajustable */
-    max-width: 90%;
-    word-wrap: break-word; /* Asegura que el texto se divida correctamente */
+    h3 {
+        font-weight: bold;
+    }
 }
 

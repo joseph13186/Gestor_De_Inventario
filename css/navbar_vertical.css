@@ -1,0 +1,241 @@
+    /* Barra de navegación horizontal */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #ffffff;
+        color: #8a8a8a;
+        padding: 16px 22px;
+        /* Reduce la altura con menos padding */
+        position: fixed;
+        /* Fija la barra en la parte superior */
+        top: 0;
+        left: 205px;
+        /* Ajusta para que no se superponga con la barra lateral */
+        width: calc(100% - 200px);
+        /* Asegura que ocupe el espacio restante */
+        z-index: 1000;
+        /* Asegura que la barra superior esté sobre la barra lateral */
+        border-radius: 2px;
+
+        border: 1px solid transparent;
+        margin: 1px;
+        box-shadow: 0 3px 5px rgba(140, 138, 138, 0.2);
+        transition: all 0.3s ease-in-out;
+
+        height: 90px; /* Fijar una altura para evitar que se estire */
+
+
+
+    }
+
+
+/* Contenedor de los iconos y el usuario */
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacio más reducido entre los iconos y el usuario */
+    margin-left: auto; /* Cambia el margen a "auto" para que se alineen a la derecha */
+
+}
+/* Iconos de notificaciones y modo oscuro */
+.navbar-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Reduce la separación entre iconos */
+    margin-left: 650px; /* Los acerca al usuario */
+}
+
+.navbar-icons i {
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+    padding: 5px; /* Área más grande para mejor clickeo */
+}
+
+.navbar-icons i:hover {
+    color: #008f8a;
+}
+
+/* Estilos para el usuario */
+.user-menu {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    padding: 5px 10px; /* Espacio adicional para clics */
+}
+
+.user-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.user-name {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Menú desplegable del usuario */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 45px;
+    right: 0;
+    background: white;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    list-style: none;
+    padding: 10px;
+    min-width: 150px; /* Evita que el menú sea muy angosto */
+}
+
+/* Mantener el menú visible al pasar el mouse sobre él */
+.user-menu:hover .dropdown-menu,
+.dropdown-menu:hover {
+    display: block;
+}
+
+.dropdown-menu li {
+    padding: 8px 12px;
+}
+
+.dropdown-menu li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+.dropdown-menu li a:hover {
+    background: #f0f0f0;
+}
+
+
+/*  Botón hamburguesa (oculto en pantallas grandes) */
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+}
+
+/* Contenedor de los elementos de la navbar */
+.navbar-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* ✅ Hacer la navbar responsiva en pantallas pequeñas */
+@media (max-width: 742px) {
+    .navbar {
+        left: 0px;
+        width: 100%;
+        padding: 15px 10px;
+    }
+
+    /* Muestra el botón hamburguesa */
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Oculta el contenido de la navbar por defecto */
+    .navbar-content {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: white;
+        width: 100%;
+        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        text-align: center;
+        border-radius: 5px;
+        max-height: 80vh;
+        overflow-y: auto;
+        z-index: 9999;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    /* Mostrar el contenido cuando la clase "active" está presente */
+    .navbar-content.active {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Ajustar el tamaño del menú para que no ocupe toda la pantalla */
+    .navbar-content a {
+        font-size: 16px;
+        padding: 10px 0;
+    }
+
+    /* Mueve los iconos a la izquierda en pantallas pequeñas */
+    .navbar-icons {
+        margin-left: 0; /* Iconos se alinean a la izquierda */
+        gap: 20px;
+    }
+}
+
+/* En pantallas más grandes (superiores a 1024px), ajustamos la distribución */
+@media (min-width: 1024px) {
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+    }
+
+    .navbar-content {
+        display: flex;
+        position: relative;
+        flex-direction: row;
+        gap: 15px;
+        top: 0;
+        left: 0;
+        background: none;
+        box-shadow: none;
+        padding: 0;
+        width: auto;
+    }
+
+    .navbar-content a {
+        font-size: 18px;
+        padding: 0 10px;
+    }
+
+    .navbar-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .navbar-icons {
+        margin-left: auto;
+    }
+}
+
+/* En pantallas intermedias (de 742px a 1024px), mantén el diseño original */
+@media (min-width: 742px) and (max-width: 1024px) {
+    .navbar {
+        left: 205px;
+        width: calc(100% - 200px);
+    }
+
+    .navbar-content {
+        display: flex;
+        flex-direction: row; /* Los elementos permanecen en fila */
+        gap: 15px;
+    }
+
+    .navbar-right {
+        margin-left: auto;
+    }
+}

@@ -1,213 +1,192 @@
-/* Estilos generales */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f9fafd;
-}
-
-/* Barra de navegación horizontal */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #ffffff;
-    color: #8a8a8a;
-    padding: 16px 22px;
-    /* Reduce la altura con menos padding */
-    position: fixed;
-    /* Fija la barra en la parte superior */
-    top: 0;
-    left: 205px;
-    /* Ajusta para que no se superponga con la barra lateral */
-    width: calc(100% - 250px);
-    /* Asegura que ocupe el espacio restante */
-    z-index: 1000;
-    /* Asegura que la barra superior esté sobre la barra lateral */
-    border-radius: 2px;
-
-    border: 1px solid transparent;
-    margin: 1px;
-    box-shadow: 0 3px 5px rgba(140, 138, 138, 0.2);
-}
-
-/* Logo */
-.logo {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-/* Información del usuario */
-.user-info {
-    text-align: right;
-}
-
-.user-name {
-    font-weight: bold;
-    display: block;
-}
-
-.user-email {
-    font-size: 14px;
-    color: #ccc;
-}
-
-/* Estilos del menú vertical */
-.navigation-bar {
-    position: fixed;
-    top: 0;
-    left: 5px;
-    width: 200px;
-    /* Ajusta el tamaño de la barra lateral */
-    height: 99%;
-    background-color: rgba(0, 177, 157, 255);
-    padding-top: 70px;
-    /* Espacio superior para que no se superponga con la navbar */
-    box-sizing: border-box;
-
-    /* Redondear solo la esquina superior izquierda */
-    border-top-left-radius: 35px;
-    border-top-right-radius: 0px;
-    /* Asegurar que la esquina superior derecha quede cuadrada */
-    border-bottom-left-radius: 35px;
-    /* Mantener la parte inferior izquierda cuadrada */
-    border-bottom-right-radius: 0px;
-    /* Asegurar que la parte inferior derecha no tenga bordes redondeados */
-
-    box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.2);
-    /* Sombra lateral */
-}
-
-/* Estilos de los enlaces en el menú vertical */
-.vertical-menu ul {
-    padding: 0;
-    list-style: none;
-    margin: 0;
-}
-
-.vertical-menu ul li {
-    /*margin: 10px 0;*/
-    position: relative;
-    /* Necesario para los submenús */
-}
-
-/* Diseño de las opcione principales*/
-.vertical-menu a {
-    display: block;
-    padding: 20px;
-    text-decoration: none;
-    color: white;
-    background-color: rgba(0, 177, 157, 255);
-    border-radius: 0px;
-    border: 1px solid transparent;
-    margin: 5px 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-
-
-
-/* Submenús */
-.vertical-menu ul ul {
-    display: none;
-    /* Mantener submenús ocultos inicialmente */
-    position: relative;
-    left: 0;
-    top: 0;
-    /* Cambié a 0 para que se posicione justo debajo del elemento padre */
-    width: 200px;
-    box-sizing: border-box;
-    border-radius: 0px;
-}
-
-/* Mostrar el submenú cuando se tiene la clase 'open' */
-.vertical-menu li.open>ul {
-    display: block;
-    /* Mostrar el submenú cuando el padre tiene la clase 'open' */
-}
-
-/* Estilos de color del menú de fondo cuando el submenú está abierto */
-.vertical-menu li.open>a {
-    background-color: #008f8a;
-}
-
-.vertical-menu a:hover {
-    background-color: rgba(0, 159, 141, 255);
-}
-
-/* Estilos para los elementos fuera de la barra de navegación */
-h1,
-h2,
-p {
-    margin-left: -20px;
-    /* Esto asegura que el contenido se desplace a la derecha */
-    padding-top: 0px;
-    /* Ajusta esto para dejar espacio debajo de la barra de navegación */
-    color: #005b50;
-
-
-
-}
-
-h3 {
-    /* Evita que las líneas sean muy largas */
-    max-width:90%;
-    /* Centra el texto */
-    text-align: center;
-    /* Asegura que el margen esté centrado */
-    margin: -17px auto;
-    color: #005b50;
-    font-size: 15px;
-}
-
-.options-inventory {
-    display: block;
-    padding: 20px -1px;
-    text-decoration: none;
-    color: white;
-    background-color: #008f8a;
-    border-radius: px;
-    border: 1px solid transparent;
-    margin: 5px 0;
-    box-shadow: 0 2px 5px rgba(64, 24, 24, 0.2);
-
-    /* Estilo para la etiqueta "a" dentro de los submenus*/
-    a {
-        background-color: #008f8a;
-        padding: 10px 40px;
-        border: 1px solid transparent;
-        box-shadow: 0 2px 5px rgba(84, 84, 84, 0.8);
+    /* Estilos generales */
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f9fafd;
+        overflow-x: hidden; /* Evita el desplazamiento horizontal */
 
 
     }
 
-}
+    /* Logo */
+    .logo {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    /* Información del usuario */
+    .user-info {
+        text-align: right;
+    }
+
+    .user-name {
+        font-weight: bold;
+        display: block;
+    }
+
+    .user-email {
+        font-size: 14px;
+        color: #ccc;
+    }
+
+    /* Estilos del menú vertical */
+    .navigation-bar {
+        position: fixed;
+        top: 0;
+        left: 5px;
+        width: 200px;
+        /* Ajusta el tamaño de la barra lateral */
+        height: 99%;
+        background-color: rgba(0, 177, 157, 255);
+        padding-top: 70px;
+        /* Espacio superior para que no se superponga con la navbar */
+        box-sizing: border-box;
+
+        /* Redondear solo la esquina superior izquierda */
+        border-top-left-radius: 35px;
+        border-top-right-radius: 0px;
+        /* Asegurar que la esquina superior derecha quede cuadrada */
+        border-bottom-left-radius: 35px;
+        /* Mantener la parte inferior izquierda cuadrada */
+        border-bottom-right-radius: 0px;
+        /* Asegurar que la parte inferior derecha no tenga bordes redondeados */
+
+        box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.2);
+        /* Sombra lateral */
+    }
+
+    /* Estilos de los enlaces en el menú vertical */
+    .vertical-menu ul {
+        padding: 0;
+        list-style: none;
+        margin: 0;
+    }
+
+    .vertical-menu ul li {
+        /*margin: 10px 0;*/
+        position: relative;
+        /* Necesario para los submenús */
+    }
+
+    /* Diseño de las opcione principales*/
+    .vertical-menu a {
+        display: block;
+        padding: 20px;
+        text-decoration: none;
+        color: white;
+        background-color: rgba(0, 177, 157, 255);
+        border-radius: 0px;
+        border: 1px solid transparent;
+        margin: 5px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
 
 
-/* Sirve para dar formato al logo que tenemos */
-
-.logo-container {
-    text-align: center;
-    margin-top: -20px;
-    /* Mueve el logo más arriba */
-
-}
-
-.logo-img {
-    width: 120px;
-    /* Ajusta el tamaño según sea necesario */
-    height: auto;
-    display: flex;
-    margin: 20 auto;
-    border-radius: 10px;
-    /* Agrega bordes redondeados opcionales */
-    transform: translate(30%, 40%);
-}
 
 
-.generar-venta {
-    width : 30px;
-    transform: translateX(-50px); /* Lo mueve 50px a la izquierda */
-    
-    
+    /* Submenús */
+    .vertical-menu ul ul {
+        display: none;
+        /* Mantener submenús ocultos inicialmente */
+        position: relative;
+        left: 0;
+        top: 0;
+        /* Cambié a 0 para que se posicione justo debajo del elemento padre */
+        width: 200px;
+        box-sizing: border-box;
+        border-radius: 0px;
+    }
 
-}
+    /* Mostrar el submenú cuando se tiene la clase 'open' */
+    .vertical-menu li.open>ul {
+        display: block;
+        /* Mostrar el submenú cuando el padre tiene la clase 'open' */
+    }
+
+    /* Estilos de color del menú de fondo cuando el submenú está abierto */
+    .vertical-menu li.open>a {
+        background-color: #008f8a;
+    }
+
+    .vertical-menu a:hover {
+        background-color: rgba(0, 159, 141, 255);
+    }
+
+    /* Estilos para los elementos fuera de la barra de navegación */
+    h1,
+    h2,
+    p {
+        margin-left: -20px;
+        /* Esto asegura que el contenido se desplace a la derecha */
+        padding-top: 0px;
+        /* Ajusta esto para dejar espacio debajo de la barra de navegación */
+        color: #005b50;
+    }
+
+    h3 {
+        /* Evita que las líneas sean muy largas */
+        max-width: 90%;
+        /* Centra el texto */
+        text-align: center;
+        /* Asegura que el margen esté centrado */
+        margin: -17px auto;
+        color: #005b50;
+        font-size: 15px;
+    }
+
+    .options-inventory {
+        display: block;
+        padding: 20px -1px;
+        text-decoration: none;
+        color: white;
+        background-color: #008f8a;
+        border-radius: px;
+        border: 1px solid transparent;
+        margin: 5px 0;
+        box-shadow: 0 2px 5px rgba(64, 24, 24, 0.2);
+
+        /* Estilo para la etiqueta "a" dentro de los submenus*/
+        a {
+            background-color: #008f8a;
+            padding: 10px 40px;
+            border: 1px solid transparent;
+            box-shadow: 0 2px 5px rgba(84, 84, 84, 0.8);
+
+
+        }
+
+    }
+
+
+    /* Sirve para dar formato al logo que tenemos */
+    .logo-container {
+        text-align: center;
+        margin-top: -20px;
+        /* Mueve el logo más arriba */
+
+    }
+
+    .logo-img {
+        width: 120px;
+        /* Ajusta el tamaño según sea necesario */
+        height: auto;
+        display: flex;
+        margin: 20 auto;
+        border-radius: 10px;
+        /* Agrega bordes redondeados opcionales */
+        transform: translate(30%, 40%);
+    }
+
+    .generar-venta {
+        width: 25px;
+        transform: translateX(-10px);
+        /* Lo mueve 50px a la izquierda */
+    }
+
+    @media (max-width: 768px) {
+        .recommend,
+        .table-container {
+            padding-left: calc(10px + 20px); /* Espacio para el menú más un margen */
+            width: calc(100% - 220px); /* Resta el espacio ocupado por el menú */
+            overflow-x: auto; /* Permite que los elementos se desplacen si es necesario */        }
+    }

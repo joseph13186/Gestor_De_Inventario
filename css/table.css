@@ -1,8 +1,9 @@
 table {
     width: 80%; /* La tabla ocupa el 80% del ancho de su contenedor */
     margin: 12px auto; /* Centra la tabla horizontalmente y añade 12px de margen arriba y abajo */
-    border-collapse: collapse; /* Elimina el espacio entre las celdas de la tabla */
     margin-left: 250px; /* Desplaza la tabla 250px hacia la derecha */
+    
+    border-collapse: collapse; /* Elimina el espacio entre las celdas de la tabla */
     border: 2px solid rgb(228, 225, 225); /* Añade un borde de 2px de color gris claro */
     border-radius: 17px; /* Redondea las esquinas de la tabla */
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Añade una sombra suave alrededor de la tabla */
@@ -16,3 +17,14 @@ th {
     background-color: #f3f5f7; /* Fondo gris claro para las cabeceras */
     color: #005b50; /* Color de texto verde oscuro para las cabeceras */
 }
+
+
+.table-container {
+    margin: 20px;
+    margin-left: 250px; /* Asegúrate de que este valor coincida con el ancho del menú vertical */
+}
+
+
+
+
+
