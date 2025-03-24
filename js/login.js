@@ -1,16 +1,26 @@
-function validarFormulario(event) {
-    event.preventDefault(); // Evita que el formulario se envíe
+$(document).ready(function () {
+    $("#loginForm").submit(function (event) {
+        event.preventDefault(); // Evita que el formulario se envíe de la manera tradicional
 
-    let usuario = document.getElementById("usuario").value.trim();
-    let password = document.getElementById("password").value.trim();
+        var usuario = $("#usuario").val();
+        var password = $("#password").val();
 
-    if (usuario === "" || password === "") {
-        alert("Por favor, completa todos los campos.");
-        return false; // Evita que el formulario se procese
-    }
+        $.ajax({
+            url: "/api/login", // Reemplaza con la URL de tu backend
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({ usuario: usuario, password: password }),
+            success: function (response) {
+                if (response.success) {
+                    window.location.href = "index.html"; // Redirige al dashboard
+                } else {
+                    alert("Usuario o contraseña incorrectos");
+                }
+            },
+            error: function () {
+                alert("Hubo un error al conectar con el servidor");
+            }
+        });
+    });
+});
 
-    // Redirige después de la validación
-    window.location.href = "/html/Admin/index.html"; // Asegúrate de que esta ruta sea correcta
-
-    return false; // Asegura que el formulario no se envíe
-}
