@@ -1,26 +1,26 @@
 $(document).ready(function () {
     $("#loginForm").submit(function (event) {
-        event.preventDefault(); // Evita que el formulario se envíe de la manera tradicional
+        event.preventDefault(); // Evita que el formulario se envíe de forma tradicional
 
-        var usuario = $("#usuario").val();
-        var password = $("#password").val();
+        let correo = $("#correo").val();
+        let password = $("#password").val();
 
         $.ajax({
-            url: "/api/login", // Reemplaza con la URL de tu backend
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify({ usuario: usuario, password: password }),
-            success: function (response) {
-                if (response.success) {
-                    window.location.href = "index.html"; // Redirige al dashboard
+            url: "http://127.0.0.1:8000/login.php", // Archivo PHP que procesa el login
+            method: "POST",
+            data: { correo: correo, password: password },
+            success: function (respuesta) {
+                // La respuesta ya es un objeto JSON, no es necesario hacer JSON.parse
+                if (respuesta.status === "success") {
+                    window.location.href = "/html/Admin/index.html"; // Redirige si el login es correcto
                 } else {
-                    alert("Usuario o contraseña incorrectos");
+                    alert(respuesta.message); // Muestra el mensaje de error devuelto desde PHP
                 }
             },
             error: function () {
-                alert("Hubo un error al conectar con el servidor");
+                alert("Error en la solicitud.");
+                console.log(correo, password); // Verifica que se están obteniendo correctamente
             }
         });
     });
 });
-
