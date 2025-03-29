@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOTAS</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="/notas/estilo1.css">
+</head>
+<body>
+    <!-- Botón para abrir el modal -->
+    <button id="btnNotas">Notas</button>
+
+    <!-- Modal -->
+    <div id="modalNotas" class="modal">
+        <div class="modal-content">
+             <span class="close">&times;</span>
+             <h2>Agregar Nota</h2>
+             <textarea id="nota" placeholder="Escribe tu nota aquí..."></textarea>
+             <br>
+             <button onclick="guardarNota()">Guardar Nota</button>
+             <button onclick="verNotas()">Ver Notas</button>
+         </div>
+     </div>
+    <script src="/notas/guardar.js"></script>
+</body>
+</html>
