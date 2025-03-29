@@ -20,6 +20,7 @@ th {
 
 
 .table-container {
+    overflow-x: auto; /* Permite el desplazamiento horizontal */
     margin: 20px;
     margin-left: 250px; /* Asegúrate de que este valor coincida con el ancho del menú vertical */
 }

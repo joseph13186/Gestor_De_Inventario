@@ -1,26 +1,30 @@
-
 .recommend {
     display: flex;
     /* Alinea la ventana a la izquierda */
-    justify-content: flex-start; /* Alinea la ventana respetando la barra lateral */
+    justify-content: flex-start;
+    /* Alinea la ventana respetando la barra lateral */
     /* Asegura que la ventana se despliegue correctamente */
     margin-top: 60px;
     /* Deja un margen a la izquierda */
     padding: 20px;
     align-items: center;
-    min-height: 50px; /* Se ajusta mejor en pantallas pequeñas */
-    max-width: 85%; /* Evita que ocupe todo el ancho */
+    min-height: 50px;
+    /* Se ajusta mejor en pantallas pequeñas */
+    max-width: 85%;
+    /* Evita que ocupe todo el ancho */
     margin-left: 225px;
+
     h2 {
         font-weight: bold;
-    }    
-   
+    }
+
 }
 
 
 .mac-window {
-    width:500px;
-    max-width: 92%; /* Permite que se reduzca en pantallas pequeñas */
+    width: 500px;
+    max-width: 92%;
+    /* Permite que se reduzca en pantallas pequeñas */
     /* Ajusta el tamaño de la ventana */
     background: white;
     border-radius: 10px;
@@ -29,8 +33,9 @@
     font-family: Arial, sans-serif;
     border: 1px solid rgb(228, 225, 225);
     display: flex;
+        /* Asegura que los elementos estén en columna */
+
     flex-direction: column;
-    /* Asegura que los elementos estén en columna */
 }
 
 
@@ -81,12 +86,41 @@
 
 .recommend-2 {
     display: flex;
-    flex-wrap: wrap; /* Permite que el texto se ajuste en varias líneas */
+    flex-wrap: wrap;
+    /* Permite que el texto se ajuste en varias líneas */
     justify-content: center;
     text-align: center;
     padding: 17px;
+
     h3 {
         font-weight: bold;
     }
 }
 
+
+
+/* En pantallas más grandes (superiores a 1024px), ajustamos la distribución */
+@media (min-width: 1024px) {}
+
+
+/* En pantallas intermedias (de 742px a 1024px), mantén el diseño original */
+@media (min-width: 450px) and (max-width: 1024px) {
+    h2 {
+        font-size: 25px;
+        /* Evita que las líneas sean muy largas */
+        max-width: 90%;
+        /* Centra el texto */
+        text-align: center;
+        /* Asegura que el margen esté centrado */
+        margin: 7px auto;
+    }
+
+    h3 {
+        font-size: 15px;
+         /* Evita que las líneas sean muy largas */
+         max-width: 120%;
+         /* Centra el texto */
+         text-align: center;
+    }
+
+}

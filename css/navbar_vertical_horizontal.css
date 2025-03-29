@@ -126,15 +126,16 @@
 .navbar-content {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 5px;
 }
 
 /* ✅ Hacer la navbar responsiva en pantallas pequeñas */
-@media (max-width: 742px) {
+/*742*/
+@media (max-width:960px){
     .navbar {
         left: 0px;
         width: 100%;
-        padding: 15px 10px;
+        padding: 5px 10px;
     }
 
     /* Muestra el botón hamburguesa */
@@ -144,14 +145,17 @@
 
     /* Oculta el contenido de la navbar por defecto */
     .navbar-content {
-        display: none;
+        display: none ; 
         flex-direction: column;
         position: absolute;
         top: 60px;
-        left: 0;
+        left: 32%;
         right: 0;
         background: white;
-        width: 100%;
+        /* Ajusta el ancho del menu desplegable */
+        width: 68%;
+         /* Para que no sea demasiado ancho */
+        max-width: 470px;
         box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
         padding: 10px;
         text-align: center;
@@ -182,7 +186,11 @@
         margin-left: 0; /* Iconos se alinean a la izquierda */
         gap: 20px;
     }
+    
+
+  
 }
+
 
 /* En pantallas más grandes (superiores a 1024px), ajustamos la distribución */
 @media (min-width: 1024px) {
@@ -203,7 +211,7 @@
         background: none;
         box-shadow: none;
         padding: 0;
-        width: auto;
+
     }
 
     .navbar-content a {
@@ -222,7 +230,10 @@
     }
 }
 
+
+
 /* En pantallas intermedias (de 742px a 1024px), mantén el diseño original */
+/*
 @media (min-width: 742px) and (max-width: 1024px) {
     .navbar {
         left: 205px;
@@ -231,7 +242,8 @@
 
     .navbar-content {
         display: flex;
-        flex-direction: row; /* Los elementos permanecen en fila */
+        Los elementos permanecen en fila
+        flex-direction: row; 
         gap: 15px;
     }
 
@@ -239,3 +251,6 @@
         margin-left: auto;
     }
 }
+
+
+*/

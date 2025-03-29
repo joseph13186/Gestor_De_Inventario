@@ -6,3 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
         navbarContent.classList.toggle("active"); // Muestra u oculta los elementos de la navbar
     });
 });
+
+
+
+

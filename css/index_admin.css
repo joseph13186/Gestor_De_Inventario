@@ -3,7 +3,9 @@
         margin: 0;
         font-family: Arial, sans-serif;
         background-color: #f9fafd;
-        overflow-x: hidden; /* Evita el desplazamiento horizontal */
+        overflow-x: hidden;
+        /* Evita el desplazamiento horizontal */
+
 
 
     }
@@ -184,9 +186,28 @@
     }
 
     @media (max-width: 768px) {
+
         .recommend,
         .table-container {
-            padding-left: calc(10px + 20px); /* Espacio para el menú más un margen */
-            width: calc(100% - 220px); /* Resta el espacio ocupado por el menú */
-            overflow-x: auto; /* Permite que los elementos se desplacen si es necesario */        }
+            padding-left: calc(10px + 20px);
+            /* Espacio para el menú más un margen */
+            width: calc(100% - 220px);
+            /* Resta el espacio ocupado por el menú */
+            overflow-x: auto;
+            /* Permite que los elementos se desplacen si es necesario */
+        }
+
+        /* Estilos del menú vertical */
+        .navigation-bar {
+            top: 2px;
+            /* Ajusta el tamaño de la barra lateral */
+            height: 98.8%;
+        }
+        .navbar{
+            left: 0; /* Evita que la navbar se salga del viewport */
+            width: 100%; /* Asegura que siempre ocupe el 100% del ancho */
+        }
+
+
+
     }
