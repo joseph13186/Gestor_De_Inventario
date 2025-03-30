@@ -47,12 +47,16 @@ function mostrarDatos() {
 
 }
 
+// Modificamos el código para que event.preventDefault(); solo afecte a los enlaces que tienen un submenú (submenu):
 
 document.querySelectorAll('.vertical-menu > ul > li > a').forEach(menuItem => {
     menuItem.addEventListener('click', function(event) {
-        event.preventDefault();
-        const parentLi = menuItem.parentElement;
-        parentLi.classList.toggle('open'); // Alterna la clase 'open' para mostrar/ocultar el submenú
+        // Evitar el comportamiento predeterminado solo si el elemento tiene un submenú
+        if (menuItem.nextElementSibling && menuItem.nextElementSibling.classList.contains('submenu')) {
+            event.preventDefault();
+            const parentLi = menuItem.parentElement;
+            parentLi.classList.toggle('open');
+        }
     });
 });
 

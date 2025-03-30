@@ -1,3 +1,5 @@
+// Contiene la lógica de control (eventos, localStorage, redirecciones).
+
 // Mostrar el modal al hacer clic en el botón "Notas"
 document.getElementById("btnNotas").onclick = function () {
     document.getElementById("modalNotas").style.display = "block";

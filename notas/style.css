@@ -1,10 +1,10 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #f4f4f4;
+    background-color: #000000;
 }
 button {
-    background-color: #00B19D;
+    background-color: #00eacf;
     color: white;
     border: none;
     padding: 10px 20px;
