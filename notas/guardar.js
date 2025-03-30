@@ -1,31 +1,22 @@
-// Mostrar el modal al hacer clic en el botón "Notas"
-document.getElementById("btnNotas").onclick = function () {
-    document.getElementById("modalNotas").style.display = "block";
-};
-
-// Cerrar el modal cuando se hace clic en la "X"
-document.querySelector(".close").onclick = function () {
-    document.getElementById("modalNotas").style.display = "none";
-};
-
-// Guardar la nota en LocalStorage
 function guardarNota() {
+    let titulo = document.getElementById("titulo").value.trim();
     let nota = document.getElementById("nota").value.trim();
-    if (nota === "") {
-        alert("La nota no puede estar vacía");
+
+    if (titulo === "" || nota === "") {
+        alert("Por favor, completa el título y la nota.");
         return;
     }
 
-    // Obtener notas previas y agregar la nueva
+    // Guardar en LocalStorage como un array de objetos
     let notas = JSON.parse(localStorage.getItem("notas")) || [];
-    notas.push(nota);
+    notas.push({ titulo, nota });
     localStorage.setItem("notas", JSON.stringify(notas));
 
     alert("Nota guardada correctamente");
-    document.getElementById("nota").value = ""; // Limpiar el campo
+    document.getElementById("titulo").value = ""; 
+    document.getElementById("nota").value = ""; 
 }
 
-// Ir a la página de ver notas
 function verNotas() {
-    window.location.href = "verNotas.html"; // Redirige a la otra página
+    window.location.href = "verNotas.html";
 }

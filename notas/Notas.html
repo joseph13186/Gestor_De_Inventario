@@ -9,19 +9,18 @@
 </head>
 <body>
     <!-- Botón para abrir el modal -->
-    <button id="btnNotas">Notas</button>
+    <button onclick="document.getElementById('modalNotas').showModal()">Notas</button>
 
-    <!-- Modal -->
-    <div id="modalNotas" class="modal">
-        <div class="modal-content">
-             <span class="close">&times;</span>
-             <h2>Agregar Nota</h2>
-             <textarea id="nota" placeholder="Escribe tu nota aquí..."></textarea>
-             <br>
-             <button onclick="guardarNota()">Guardar Nota</button>
-             <button onclick="verNotas()">Ver Notas</button>
-         </div>
-     </div>
+    <!-- Modal con la etiqueta <dialog> -->
+    <dialog id="modalNotas">
+        <h2>Agregar Nota</h2>
+        <input type="text" id="titulo" placeholder="Título de la nota">
+        <textarea id="nota" placeholder="Escribe tu nota aquí..."></textarea>
+        <br>
+        <button onclick="guardarNota()">Guardar Nota</button>
+        <button onclick="verNotas()">Ver Notas</button>
+        <button onclick="document.getElementById('modalNotas').close()">Cerrar</button>
+    </dialog>
     <script src="/notas/guardar.js"></script>
 </body>
 </html>
