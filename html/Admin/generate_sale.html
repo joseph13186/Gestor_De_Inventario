@@ -4,18 +4,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Index</title>
+    <title>Generar una venta</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="/css/index_admin.css">
     <link rel="stylesheet" href="/css/navbar_vertical_horizontal.css">
     <link rel="stylesheet" href="/css/recommed.css">
     <link rel="stylesheet" href="/css/table.css">
+    <link rel="stylesheet" href="/css/generate_sale.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 
     <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.css">
 
@@ -110,12 +110,9 @@
                 <span class="mac-dot green"></span>
             </div>
             <div class="mac-content">
-                <h2><i class="fa-solid fa-box"></i> Productos que siguen en STOCK.</h2>
+                <h2><i class="fa-solid fa-cash-register"></i> Módulo de ventas.</h2>
             </div>
-            <div class="recommend-2">
-                <h3><i class="fa-solid fa-comment"></i> Los siguientes productos llevan tiempo en inventario.
-                    Se recomienda revisarlos para posibles promociones o liquidaciones.</h3>
-            </div>
+
         </div>
     </div>
     <div class="table-container">
@@ -128,58 +125,84 @@
                     <th>Temporada</th>
                     <th>Descripción</th>
                     <th>Precio (c/u)</th>
-                    <th>Fecha de ingreso</th>
-                    <th>Fecha de última compra</th>
-                    <th>Hora de última compra</th>
+                    <th>Total</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>1</td>
-                    <td>Producto A</td>
-                    <td>10</td>
-                    <td>Verano</td>
-                    <td>Descripción del productos</td>
-                    <td>$20.00</td>
-                    <td>2023-01-15</td>
-                    <td>2023-10-01</td>
-                    <td>14:30</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Producto B</td>
-                    <td>5</td>
-                    <td>Invierno</td>
-                    <td>Descripción del productos</td>
-                    <td>$15.00</td>
-                    <td>2023-02-20</td>
-                    <td>2023-09-25</td>
-                    <td>10:15</td>
+
+
+                <tr id="new-product-row">
+                    <td>
+                        <input type="text" id="new-product-id" class="search" placeholder="ID">
+                    </td>
+                    <td>
+                        <input type="text" id="new-product-name" class="search" placeholder="Nombre">
+                    </td>
+                    <td>
+                        <input type="number" id="new-product-quantity" class="search cantidad" inputmode="numeric" min= 0 placeholder="Cantidad">
+                    </td>
+                    <td>
+                        <input type="text" id="new-product-season" class="non-modifiable" placeholder="Temporada" readonly>
+                    </td>
+                    <td>
+                        <input type="text" id="new-product-description" class="non-modifiable" placeholder="Descripción" readonly>
+                    </td>
+                    <td>
+                        <input type="number" id="new-product-price" class="non-modifiable" placeholder="Precio" readonly>
+                    </td>
+                    <td id="new-product-total">
+                        <!-- Se calculará automáticamente -->
+                    </td>
+                    <td>
+                        <button id="update-product" style="display:none;"> <i class="fa-solid fa-retweet fa-fm"></i>Actualizar</button>
+                        <button id="save-new-product" class="btn btn-primary"><i class="fa-regular fa-circle-check fa-fm"></i> Guardar</button>
+                        <button id="clean-product" class="btn btn-primary"> <i class="fa-solid fa-broom fa-fm"></i> Limpiar</button>
+                        <button id="cancel-update" style="display:none;" class="btn btn-secondary"><i class="bi bi-x-circle fa-fm"></i> cancelar</button>
+                        
+
+
+                    </td>
                 </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Producto C</td>
-                    <td>8</td>
-                    <td>Primavera</td>
-                    <td>Descripción del productos</td>
-                    <td>$25.00</td>
-                    <td>2023-03-10</td>
-                    <td>2023-08-30</td>
-                    <td>16:45</td>
-                </tr>
+            </tbody>
 
         </table>
-    </div>
+
+        <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Eliminación</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                  ¿Estás seguro de que deseas eliminar este producto?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-danger" id="confirmDeleteButton">Eliminar</button>
+                </div>
+              </div>
+            </div>
+          </div>
 
 
-    <script defer src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script defer
-        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script defer src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
-    <script defer src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
-    <script src="/js/post-script.js"></script>
-    <script src="/js/data_table.js"></script>
-    <script src="/js/navbar-vertical.js"></script>
+
+        <script defer src="https://code.jquery.com/jquery-3.7.1.js"></script>
+        <script defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        <script defer src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
+        <script defer src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
+        <script src="/js/post-script.js"></script>
+        <script src="/js/data_table.js"></script>
+        <script src="/js/navbar-vertical.js"></script>
+        <script defer src="/js/generate_sale.js"></script>
+
+        
+
 
 </body>
 
