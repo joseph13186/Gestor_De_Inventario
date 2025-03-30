@@ -3,30 +3,45 @@ body {
     text-align: center;
     background-color: #f4f4f4;
 }
-button {
-    background-color: #00B19D;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin: 10px;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
-}
-button:hover {
-    background-color: #0056b3;
-}
-
 /* Estilos del modal */
 dialog {
     border: none;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0px 0px 10px #333;
-    width: 50%;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%; /* Reducimos el ancho */
+    max-width: 300px; /* Evita que se haga demasiado grande */
+    text-align: center;
 }
-textarea, input {
-    width: 100%;
-    padding: 8px;
-    margin: 5px 0;
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* Ajustar los inputs y textarea */
+input, textarea {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Mejorar la apariencia de los botones */
+button {
+    background-color: #00a99d;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    margin: 10px 5px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: #00867d;
 }
