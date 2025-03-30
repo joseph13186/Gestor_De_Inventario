@@ -1,0 +1,126 @@
+
+input, select, button {
+    margin: 10px 0;
+    padding: 10px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: none; /* Elimina todos los bordes internos */
+    padding: 10px;
+    text-align: center;
+}
+/* Opcional: añadir líneas divisorias solo entre filas */
+tr {
+    border-bottom: 1px solid #eee; /* Línea sutil entre filas */
+    border-bottom: 2px solid #ccc; /* Línea más marcada bajo los encabezados */
+
+}
+.total {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: right;
+    margin-top: 10px;
+}
+
+ /* Opcional: estilos para resaltar la fila de ingreso */
+ #new-product-row input {
+    width: 100%;
+    border: 1px solid #c7c5c5;
+    padding: 4px;
+    
+  }
+
+  .recommend {
+    display: flex;
+    /* Alinea la ventana a la izquierda */
+    justify-content: flex-start;
+    /* Alinea la ventana respetando la barra lateral */
+    /* Asegura que la ventana se despliegue correctamente */
+    margin-top: 60px;
+    /* Deja un margen a la izquierda */
+    padding: 20px;
+    align-items: center;
+    min-height: 50px;
+    /* Se ajusta mejor en pantallas pequeñas */
+    max-width: 85%;
+    /* Evita que ocupe todo el ancho */
+    margin-left: 225px;
+
+    h2 {
+        font-weight: bold;
+        
+    }
+
+}
+
+.non-modifiable{
+    color: #374045;
+    background-color: #eeeeee;
+    text-align: left;
+    font-style: initial;
+    border-radius: 5px;
+
+}
+
+
+.search{
+    background-color: #50abc8;
+    border-color: #ffffff ;
+    color: #ffffff;
+}
+
+#new-product-name::placeholder,#new-product-id::placeholder,#new-product-quantity::placeholder {
+    color: #fbffff !important; /* !important asegura que prevalezca */
+}
+
+.cantidad{
+    color: #f8f9fa;
+}
+#save-new-product{
+    background-color: #afc8f5;
+    border-color: #afc8f5 ;
+    
+}
+
+#save-new-product:hover{
+    background-color: rgba(34, 84, 178, 0.748);
+    border-color: rgba(34, 84, 178, 0.748) ;
+}
+#clean-product {
+    background-color: #afc8f5;
+    border-color: #afc8f5 ;
+}
+
+#clean-product:hover{
+    background-color: rgba(34, 84, 178, 0.748);
+    border-color: rgba(34, 84, 178, 0.748) ;
+}
+
+
+#update-product{
+
+    background-color: #33c490;
+    border-color: #33c490 ;
+    color: #eee;
+    font-size: 15px;
+    border-radius: 5px;
+    min-height: 10px;
+    max-width: 110px;
+
+}
+
+#update-product:hover{
+
+    background-color: #ececec;
+    border-color: #ececec ;
+    color: #000000;
+    font-size: 15px;
+    border-radius: 5px;
+
+
+}
