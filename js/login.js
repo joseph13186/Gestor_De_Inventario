@@ -6,7 +6,9 @@ $(document).ready(function () {
         let password = $("#password").val();
 
         $.ajax({
-            url: "http://127.0.0.1:8000/login.php", // Archivo PHP que procesa el login
+            // Corremos el servicio php desde la carpeta principal del proyectp
+            // y ademas debemos de especifcar la carpeta donde se encuentra los archivos php
+            url: "http://127.0.0.1:8000/php/login.php", // Archivo PHP que procesa el login
             method: "POST",
             data: { correo: correo, password: password },
             success: function (respuesta) {

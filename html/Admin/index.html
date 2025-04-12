@@ -34,10 +34,34 @@
             <!-- Es para que abra la ventana modal  -->
             <div class="navbar-right">
                 <div class="navbar-icons">
-                    <i  class="bi bi-journals" onclick="document.getElementById('modalNotas').showModal()"> Notas</i> <!-- Notificaciones -->
+                    <i class="bi bi-journals" onclick="document.getElementById('modalNotas').showModal()"> Notas</i>
+                    <!-- Notificaciones -->
                     <i class="fa-solid fa-moon toggle-dark-mode"> </i> <!-- Modo oscuro -->
+                    <span id="saludo-php" class="tiempo"> </span>
+                    <!-- Script para cargar el saludo desde PHP -->
                 </div>
             </div>
+            <script>
+                function obtenerHoraServidor() {
+                    fetch('http://127.0.0.1:8000/php/hour.php')
+                        .then(response => {
+                            if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
+                            return response.text();
+                        })
+                        .then(text => {
+                            document.getElementById('saludo-php').textContent = text;
+                        })
+                        .catch(error => {
+                            console.error("Error en fetch:", error);
+                            document.getElementById('saludo-php').textContent = "Saludo no disponible";
+                        });
+                }
+                // Actualiza cada segundo
+                setInterval(obtenerHoraServidor, 1000);
+
+                // También actualiza al cargar
+                obtenerHoraServidor();
+            </script>
 
             <div class="user-menu">
                 <img src="/img/panda Admin 1.png" alt="Usuario" class="user-avatar">
@@ -64,7 +88,7 @@
                     </a>
                 </li>
                 <li>
-                    <a type="button"  href="/html/Admin/generate-sale.html">
+                    <a type="button" href="/html/Admin/generate-sale.html">
                         <img src="/img/ventas (1).png" class="generar-venta">
                         Generar Venta
                     </a>
@@ -186,13 +210,15 @@
 
 
     <script defer src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script defer
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script defer src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
     <script defer src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
     <script src="/js/post-script.js"></script>
     <script src="/js/data-table.js"></script>
     <script src="/js/navbar-vertical.js"></script>
     <script src="/js/save-note.js"></script>
+    <script src="/js/hour.js"></script>
 
 </body>
 
