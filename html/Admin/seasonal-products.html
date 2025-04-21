@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Index</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/index-admin.css">
+    <link rel="stylesheet" href="/css/navbar-vertical-horizontal.css">
+    <link rel="stylesheet" href="/css/recommed.css">
+    <link rel="stylesheet" href="/css/table.css">
+    <link rel="stylesheet" href="/css/table-seasonal-products.css">
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.css">
+    <link rel="stylesheet" href="/css/modal-new-note.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/rowgroup/1.4.1/css/rowGroup.bootstrap5.min.css">
+    <script defer src="https://cdn.datatables.net/rowgroup/1.4.1/js/dataTables.rowGroup.min.js"></script>
+
+
+
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">Stock - Mastery</div>
+        <!-- Botón Hamburguesa (solo visible en pantallas pequeñas) -->
+        <button class="menu-toggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="navbar-content">
+
+            <!-- Es para que abra la ventana modal  -->
+            <div class="navbar-right">
+                <div class="navbar-icons">
+                    <i class="bi bi-journals" onclick="document.getElementById('modalNotas').showModal()"> Notas</i>
+                    <!-- Notificaciones -->
+                    <i class="fa-solid fa-moon toggle-dark-mode"> </i> <!-- Modo oscuro -->
+                    <span id="saludo-php" class="tiempo"> </span>
+                    <!-- Script para cargar el saludo desde PHP -->
+                </div>
+            </div>
+            <script>
+                function obtenerHoraServidor() {
+                    fetch('http://127.0.0.1:8000/php/hour.php')
+                        .then(response => {
+                            if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
+                            return response.text();
+                        })
+                        .then(text => {
+                            document.getElementById('saludo-php').textContent = text;
+                        })
+                        .catch(error => {
+                            console.error("Error en fetch:", error);
+                            document.getElementById('saludo-php').textContent = "Saludo no disponible";
+                        });
+                }
+                // Actualiza cada segundo
+                setInterval(obtenerHoraServidor, 1000);
+
+                // También actualiza al cargar
+                obtenerHoraServidor();
+            </script>
+
+            <div class="user-menu">
+                <img src="/img/panda Admin 1.png" alt="Usuario" class="user-avatar">
+                <span class="user-name">Nombre del Usuario</span>
+                <i class="fa-solid fa-chevron-down"></i>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Ver empleados</a></li>
+                    <li><a href="#">Cerrar sesión</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="navigation-bar">
+        <div class="logo-container">
+            <img src="/img/Logo Panda.png" alt="Logo" class="logo-img">
+        </div>
+        <nav class="vertical-menu">
+            <ul>
+                <li>
+                    <a href="index.html">
+                        <i class="bi bi-house-door-fill"></i>
+                        Inicio
+                    </a>
+                </li>
+                <li>
+                    <a type="button" href="/html/Admin/generate-sale.html">
+                        <img src="/img/ventas (1).png" class="generar-venta">
+                        Generar Venta
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="bi bi-cash-coin"></i>
+                        Ingresos
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="bi bi-card-checklist">
+                            Inventario
+                        </i>
+                    </a>
+                    <ul class="submenu">
+                        <div class="options-inventory sub-options">
+                            <li>
+                                <a href="#">
+                                    <i class="bi bi-pen-fill"></i>
+                                    Modificar Stock
+                                </a>
+                            </li>
+
+                        </div>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="bi bi-stars"></i>
+                        Productos de temporada
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <br>
+
+    <div class="recommend">
+        <div class="mac-window">
+            <div class="mac-header">
+                <span class="mac-dot red"></span>
+                <span class="mac-dot yellow"></span>
+                <span class="mac-dot green"></span>
+            </div>
+            <div class="mac-content">
+                <h2> <i class="bi bi-stars"></i> Productos temporada.</h2>
+            </div>
+            <div class="recommend-2">
+                <h3><i class="fa-solid fa-comment"></i> Los siguientes productos están ordenados según
+                    la temporada.</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="todos-tab" data-bs-toggle="tab" data-bs-target="#todos"
+                    type="button" role="tab">Todos</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="primavera-tab" data-bs-toggle="tab" data-bs-target="#primavera"
+                    type="button" role="tab">Primavera</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="verano-tab" data-bs-toggle="tab" data-bs-target="#verano" type="button"
+                    role="tab">Verano</button>
+            </li>
+
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="otonio-tab" data-bs-toggle="tab" data-bs-target="#otonio" type="button"
+                    role="tab">Otoño</button>
+            </li>
+
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="invierno-tab" data-bs-toggle="tab" data-bs-target="#invierno" type="button"
+                    role="tab">Invierno</button>
+            </li>
+
+        </ul>
+
+        <!-- Contenido de pestañas -->
+        <div class="tab-content" id="myTabContent">
+
+            <div class="tab-pane fade show active" id="todos" role="tabpanel" aria-labelledby="todos-tab">
+                <table id="todos-dt">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Temporada</th>
+                            <th>Descripción</th>
+                            <th>Precio (c/u)</th>
+                            <th>Fecha de ingreso</th>
+                            <th>Fecha de última compra</th>
+                            <th>Hora de última compra</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Producto A</td>
+                            <td>10</td>
+                            <td>Verano</td>
+                            <td>Descripción del productos</td>
+                            <td>$20.00</td>
+                            <td>2023-01-15</td>
+                            <td>2023-10-01</td>
+                            <td>14:30</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Producto B</td>
+                            <td>5</td>
+                            <td>Invierno</td>
+                            <td>Descripción del productos</td>
+                            <td>$15.00</td>
+                            <td>2023-02-20</td>
+                            <td>2023-09-25</td>
+                            <td>10:15</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Producto C</td>
+                            <td>8</td>
+                            <td>Primavera</td>
+                            <td>Descripción del productos</td>
+                            <td>$25.00</td>
+                            <td>2023-03-10</td>
+                            <td>2023-08-30</td>
+                            <td>16:45</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Producto C</td>
+                            <td>8</td>
+                            <td>Primavera</td>
+                            <td>Descripción del productos</td>
+                            <td>$25.00</td>
+                            <td>2023-03-10</td>
+                            <td>2023-08-30</td>
+                            <td>16:45</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Producto C</td>
+                            <td>8</td>
+                            <td>Primavera</td>
+                            <td>Descripción del productos</td>
+                            <td>$25.00</td>
+                            <td>2023-03-10</td>
+                            <td>2023-08-30</td>
+                            <td>16:45</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Producto C</td>
+                            <td>8</td>
+                            <td>Primavera</td>
+                            <td>Descripción del productos</td>
+                            <td>$25.00</td>
+                            <td>2023-03-10</td>
+                            <td>2023-08-30</td>
+                            <td>16:45</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Producto B</td>
+                            <td>5</td>
+                            <td>Invierno</td>
+                            <td>Descripción del productos</td>
+                            <td>$15.00</td>
+                            <td>2023-02-20</td>
+                            <td>2023-09-25</td>
+                            <td>10:15</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Producto B</td>
+                            <td>5</td>
+                            <td>Invierno</td>
+                            <td>Descripción del productos</td>
+                            <td>$15.00</td>
+                            <td>2023-02-20</td>
+                            <td>2023-09-25</td>
+                            <td>10:15</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Producto A</td>
+                            <td>10</td>
+                            <td>Verano</td>
+                            <td>Descripción del productos</td>
+                            <td>$20.00</td>
+                            <td>2023-01-15</td>
+                            <td>2023-10-01</td>
+                            <td>14:30</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Producto A</td>
+                            <td>10</td>
+                            <td>Verano</td>
+                            <td>Descripción del productos</td>
+                            <td>$20.00</td>
+                            <td>2023-01-15</td>
+                            <td>2023-10-01</td>
+                            <td>14:30</td>
+                        </tr>
+
+                </table>
+            </div>
+            <!-- TAB PRIMAVERA -->
+            <div class="tab-pane fade" id="primavera" role="tabpanel" aria-labelledby="primavera-tab">
+                <!-- Aquí va la tabla con productos de temporada Verano -->
+                <table id="primavera-dt">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Temporada</th>
+                            <th>Descripción</th>
+                            <th>Precio (c/u)</th>
+                            <th>Fecha de ingreso</th>
+                            <th>Fecha de última compra</th>
+                            <th>Hora de última compra</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>9</td>
+                            <td>Producto C</td>
+                            <td>10</td>
+                            <td>Primavera</td>
+                            <td>Descripción del productos</td>
+                            <td>$20.00</td>
+                            <td>2023-01-15</td>
+                            <td>2023-10-01</td>
+                            <td>14:30</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+            <!-- TAB VERANO -->
+            <div class="tab-pane fade" id="verano" role="tabpanel" aria-labelledby="verano-tab">
+                <!-- Aquí va la tabla con productos de temporada Verano -->
+                <table id="verano-dt">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Temporada</th>
+                            <th>Descripción</th>
+                            <th>Precio (c/u)</th>
+                            <th>Fecha de ingreso</th>
+                            <th>Fecha de última compra</th>
+                            <th>Hora de última compra</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2</td>
+                            <td>Producto B</td>
+                            <td>50</td>
+                            <td>Verano</td>
+                            <td>Descripción del productos</td>
+                            <td>$20.00</td>
+                            <td>2023-01-15</td>
+                            <td>2023-10-01</td>
+                            <td>14:30</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+            <!-- TAB OTOÑO -->
+            <div class="tab-pane fade" id="otonio" role="tabpanel" aria-labelledby="otonio-tab">
+                <!-- Aquí va la tabla con productos de temporada Verano -->
+                <table id="otonio-dt">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Temporada</th>
+                            <th>Descripción</th>
+                            <th>Precio (c/u)</th>
+                            <th>Fecha de ingreso</th>
+                            <th>Fecha de última compra</th>
+                            <th>Hora de última compra</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>3</td>
+                            <td>Producto C</td>
+                            <td>10</td>
+                            <td>Otoño</td>
+                            <td>Descripción del productos</td>
+                            <td>$20.00</td>
+                            <td>2023-01-15</td>
+                            <td>2023-10-01</td>
+                            <td>14:30</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+            <!-- TAB INVIERNO -->
+            <div class="tab-pane fade" id="invierno" role="tabpanel" aria-labelledby="invierno-tab">
+                <!-- Aquí va la tabla con productos de temporada Verano -->
+                <table id="invierno-dt">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Temporada</th>
+                            <th>Descripción</th>
+                            <th>Precio (c/u)</th>
+                            <th>Fecha de ingreso</th>
+                            <th>Fecha de última compra</th>
+                            <th>Hora de última compra</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>4</td>
+                            <td>Producto D</td>
+                            <td>50</td>
+                            <td>Invierno</td>
+                            <td>Descripción del productos</td>
+                            <td>$20.00</td>
+                            <td>2023-01-15</td>
+                            <td>2023-10-01</td>
+                            <td>14:30</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
+    <!-- Modal con la etiqueta <dialog> -->
+    <dialog id="modalNotas">
+        <h2>Agregar Nota</h2>
+        <input type="text" id="titulo" placeholder="Título de la nota">
+        <textarea id="nota" placeholder="Escribe tu nota aquí..."></textarea>
+        <br>
+        <button class="notes" onclick="guardarNota()">Guardar Nota</button>
+        <button class="notes" onclick="verNotas()">Ver Notas</button>
+        <button class="notes" onclick="document.getElementById('modalNotas').close()">Cerrar</button>
+    </dialog>
+
+
+    <script defer src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script defer
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script defer src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
+    <script defer src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
+    <script src="/js/post-script.js"></script>
+    <script src="/js/data-table-products.js"></script>
+    <script src="/js/navbar-vertical.js"></script>
+    <script src="/js/save-note.js"></script>
+    <script src="/js/hour.js"></script>
+    <!-- JS RowGroup -->
+    <script src="https://cdn.datatables.net/rowgroup/1.4.1/js/dataTables.rowGroup.min.js"></script>
+
+
+</body>
+
+</html>
