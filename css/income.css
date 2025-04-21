@@ -1,0 +1,126 @@
+.resumen-container {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 500%; 
+  max-width: 1000px; /* Opcional: controla el ancho del contenido */
+  margin: 0 auto; /* Centra el contenedor */
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+
+.table {
+  border-collapse: collapse;
+  font-size: 14px;
+  margin: 15px auto; /* Centro adicional */
+  width: 100%; 
+  
+}
+
+
+.table thead {
+  background-color: #2c3e50;
+  color: white;
+}
+
+.table th, .table td {
+  padding: 8px 15px;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+  white-space: nowrap; /* Evita saltos de línea */
+}
+
+.table th {
+  font-weight: 600;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.total-general {
+  background-color: #008f8a;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin: 10px 0 5px auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  left: 750px; /* Puedes ajustar más */
+}
+
+
+.total-label {
+  font-size: 16px;
+}
+
+.total-amount {
+  font-size: 20px;
+  color: #f1c40f;
+}
+
+.input-busqueda {
+  width: 100%;
+  max-width: 300px;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin: 10px 0 15px 0;
+  display: block;
+  box-sizing: border-box;
+}
+
+h3 {
+  color: #008f8a;
+  margin-bottom: 15px;
+  font-size: 20px;
+  text-align: center;
+  position: relative;
+  right: 330px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.tab-buttons {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.tab-btn {
+  padding: 8px 16px;
+  margin: 0 5px;
+  border: none;
+  background-color: #008f8a;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  background-color: #005f5c;
+}
+
+.hidden {
+  display: none;
+}
+
+.rango-fechas-texto {
+  text-align: center;
+  font-size: 16px;
+  color: #08b6b1;
+  margin-bottom: 10px;
+  font-weight: bold;
+  position: relative;
+  left: 290px;
+  bottom: 90px;
+}
+

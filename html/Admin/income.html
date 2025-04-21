@@ -19,6 +19,7 @@
 
     <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.css">
     <link rel="stylesheet" href="/css/modal-new-note.css">
+    <link rel="stylesheet" href="/css/income.css">
 
 
 
@@ -70,7 +71,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/html/Admin/income.html">
+                    <a href="#">
                         <i class="bi bi-cash-coin"></i>
                         Ingresos
                     </a>
@@ -112,101 +113,65 @@
                 <span class="mac-dot green"></span>
             </div>
             <div class="mac-content">
-                <h2><i class="fa-solid fa-cash-register"></i> Módulo de ventas.</h2>
+                <h2><i class="bi bi-cash-coin"></i> Ingresos</h2>
             </div>
 
         </div>
     </div>
-    <div class="table-container">
-        <table id="example">
+    
+
+    <div class="resumen-container">
+        <h3>Resumen de productos vendidos</h3>
+        
+        <input type="text" id="filtroProducto" placeholder="Buscar producto..." class="input-busqueda">
+
+        <div id="rango-fechas" class="rango-fechas-texto"></div>
+
+        
+        <div class="tab-buttons">
+            <button class="tab-btn active" data-tab="semana-actual">Esta semana</button>
+            <button class="tab-btn" data-tab="semana-pasada">Semana pasada</button>
+          </div>
+          
+        
+          <table class="table" id="tablaProductos-semana-actual">
             <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Producto</th>
-                    <th>Cantidad</th>
-                    <th>Temporada</th>
-                    <th>Descripción</th>
-                    <th>Precio (c/u)</th>
-                    <th>Total</th>
-                    <th>Acciones</th>
-                </tr>
+              <tr>
+                <th data-columna="id">ID</th>
+                <th data-columna="nombre">Producto</th>
+                <th data-columna="precio">Precio ($)</th>
+                <th data-columna="cantidad">Cantidad</th>
+                <th data-columna="total">Total ($)</th>
+              </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-
-                <tr id="new-product-row">
-                    <td>
-                        <input type="text" id="new-product-id" class="search" placeholder="ID">
-                    </td>
-                    <td>
-                        <input type="text" id="new-product-name" class="search" placeholder="Nombre">
-                    </td>
-                    <td>
-                        <input type="number" id="new-product-quantity" class="search cantidad" inputmode="numeric" min=0
-                            placeholder="Cantidad">
-                    </td>
-                    <td>
-                        <input type="text" id="new-product-season" class="non-modifiable" placeholder="Temporada"
-                            readonly>
-                    </td>
-                    <td>
-                        <input type="text" id="new-product-description" class="non-modifiable" placeholder="Descripción"
-                            readonly>
-                    </td>
-                    <td>
-                        <input type="number" id="new-product-price" class="non-modifiable" placeholder="Precio"
-                            readonly>
-                    </td>
-                    <td id="new-product-total">
-                        <!-- Se calculará automáticamente -->
-                    </td>
-                    <td>
-                        <button id="update-product" style="display:none;"> <i
-                                class="fa-solid fa-retweet fa-fm"></i>Actualizar</button>
-                        <button id="save-new-product" class="btn btn-primary"><i
-                                class="fa-regular fa-circle-check fa-fm"></i> Guardar</button>
-                        <button id="clean-product" class="btn btn-primary"> <i class="fa-solid fa-broom fa-fm"></i>
-                            Limpiar</button>
-                        <button id="cancel-update" style="display:none;" class="btn btn-secondary"><i
-                                class="bi bi-x-circle fa-fm"></i> cancelar</button>
-
-
-
-                    </td>
-                </tr>
+              <!-- Filas generadas por JS -->
             </tbody>
+          </table>
 
-        </table>
-
-        <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Eliminación</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                    </div>
-                    <div class="modal-body">
-                        ¿Estás seguro de que deseas eliminar este producto?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-danger" id="confirmDeleteButton">Eliminar</button>
-                    </div>
-                </div>
-            </div>
+          <table class="table hidden" id="tablaProductos-semana-pasada">
+            <thead>
+              <tr>
+                <th data-columna="id">ID</th>
+                <th data-columna="nombre">Producto</th>
+                <th data-columna="precio">Precio ($)</th>
+                <th data-columna="cantidad">Cantidad</th>
+                <th data-columna="total">Total ($)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Filas generadas por JS -->
+            </tbody>
+          </table>
+        
+        
+        <div class="total-general" id="totalVenta">
+          <span class="total-label">TOTAL VENTA:</span>
+          <span class="total-amount">$0</span>
         </div>
-
+      </div>
+      
+    
         <!-- Modal con la etiqueta <dialog> -->
         <dialog id="modalNotas">
             <h2>Agregar Nota</h2>
@@ -230,6 +195,7 @@
         <script src="/js/navbar-vertical.js"></script>
         <script defer src="/js/generate-sale.js"></script>
         <script src="/js/save-note.js"></script>
+        <script src="/js/income.js"></script>
 
 
 </body>
