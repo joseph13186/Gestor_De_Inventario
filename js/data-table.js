@@ -1,6 +1,6 @@
  // Inicialización de DataTable
  document.addEventListener("DOMContentLoaded", function() {
-    $('#example').DataTable({
+    $('#todos-dt').DataTable({
         language: {
             search: "Buscar:",
             lengthMenu: "Mostrar _MENU_ registros por página",

@@ -9,7 +9,7 @@
         /* Reduce la altura con menos padding */
         position: fixed;
         /* Fija la barra en la parte superior */
-        top: 0;
+        top: -1px;
         left: 205px;
         /* Ajusta para que no se superponga con la barra lateral */
         width: calc(100% - 200px);

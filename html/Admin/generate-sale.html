@@ -35,7 +35,8 @@
 
             <div class="navbar-right">
                 <div class="navbar-icons">
-                    <i class="bi bi-journals" onclick="document.getElementById('modalNotas').showModal()"> Notas</i> <!-- Notificaciones -->
+                    <i class="bi bi-journals" onclick="document.getElementById('modalNotas').showModal()"> Notas</i>
+                    <!-- Notificaciones -->
                     <i class="fa-solid fa-moon toggle-dark-mode"> </i> <!-- Modo oscuro -->
                 </div>
             </div>
@@ -65,7 +66,7 @@
                     </a>
                 </li>
                 <li>
-                    <a type="button" href="/html/Admin/generate-sale.html">
+                    <a type="button" href="#">
                         <img src="/img/ventas (1).png" class="generar-venta">Generar Venta</img>
                     </a>
                 </li>
@@ -84,7 +85,7 @@
                     <ul class="submenu">
                         <div class="options-inventory sub-options">
                             <li>
-                                <a href="#">
+                                <a href="modify-stock.html">
                                     <i class="bi bi-pen-fill"></i>
                                     Modificar Stock
                                 </a>
@@ -94,7 +95,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="seasonal-products.html">
                         <i class="bi bi-stars"></i>
                         Productos de temporada
                     </a>
@@ -118,7 +119,7 @@
         </div>
     </div>
     <div class="table-container">
-        <table id="example">
+        <table id="todos-dt">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -187,49 +188,50 @@
             </tbody>
 
         </table>
+    </div>
 
-        <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Eliminación</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                    </div>
-                    <div class="modal-body">
-                        ¿Estás seguro de que deseas eliminar este producto?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-danger" id="confirmDeleteButton">Eliminar</button>
-                    </div>
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Eliminación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro de que deseas eliminar este producto?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="confirmDeleteButton">Eliminar</button>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Modal con la etiqueta <dialog> -->
-        <dialog id="modalNotas">
-            <h2>Agregar Nota</h2>
-            <input type="text" id="titulo" placeholder="Título de la nota">
-            <textarea id="nota" placeholder="Escribe tu nota aquí..."></textarea>
-            <br>
-            <button class="notes" onclick="guardarNota()">Guardar Nota</button>
-            <button class="notes" onclick="verNotas()">Ver Notas</button>
-            <button class="notes" onclick="document.getElementById('modalNotas').close()">Cerrar</button>
-        </dialog>
+    <!-- Modal con la etiqueta <dialog> -->
+    <dialog id="modalNotas">
+        <h2>Agregar Nota</h2>
+        <input type="text" id="titulo" placeholder="Título de la nota">
+        <textarea id="nota" placeholder="Escribe tu nota aquí..."></textarea>
+        <br>
+        <button class="notes" onclick="guardarNota()">Guardar Nota</button>
+        <button class="notes" onclick="verNotas()">Ver Notas</button>
+        <button class="notes" onclick="document.getElementById('modalNotas').close()">Cerrar</button>
+    </dialog>
 
 
 
-        <script defer src="https://code.jquery.com/jquery-3.7.1.js"></script>
-        <script defer
-            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-        <script defer src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
-        <script defer src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
-        <script src="/js/post-script.js"></script>
-        <script src="/js/data-table.js"></script>
-        <script src="/js/navbar-vertical.js"></script>
-        <script defer src="/js/generate-sale.js"></script>
-        <script src="/js/save-note.js"></script>
+    <script defer src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script defer
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script defer src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
+    <script defer src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
+    <script src="/js/post-script.js"></script>
+    <script src="/js/data-table.js"></script>
+    <script src="/js/navbar-vertical.js"></script>
+    <script defer src="/js/generate-sale.js"></script>
+    <script src="/js/save-note.js"></script>
 
 
 </body>

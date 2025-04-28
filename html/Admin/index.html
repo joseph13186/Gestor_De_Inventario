@@ -5,6 +5,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Index</title>
+
+      <!-- Generamos conexion con la Base de Datos -->
+      <script>
+        function conectarBD() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://127.0.0.1:8000/php/conexion-bd.php", true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    alert(xhr.responseText);  // Muestra el mensaje desde el PHP
+                    console.log("Conexion a la BD")                }
+            };
+            xhr.send();
+        }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/index-admin.css">
     <link rel="stylesheet" href="/css/navbar-vertical-horizontal.css">
@@ -108,7 +122,7 @@
                     <ul class="submenu">
                         <div class="options-inventory sub-options">
                             <li>
-                                <a href="#">
+                                <a href="modify-stock.html">
                                     <i class="bi bi-pen-fill"></i>
                                     Modificar Stock
                                 </a>
@@ -118,7 +132,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="seasonal-products.html">
                         <i class="bi bi-stars"></i>
                         Productos de temporada
                     </a>
@@ -145,7 +159,7 @@
         </div>
     </div>
     <div class="table-container">
-        <table id="example">
+        <table id="todos-dt">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -193,6 +207,18 @@
                     <td>2023-08-30</td>
                     <td>16:45</td>
                 </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Producto B</td>
+                    <td>5</td>
+                    <td>Invierno</td>
+                    <td>Descripción del productos</td>
+                    <td>$15.00</td>
+                    <td>2023-02-20</td>
+                    <td>2023-09-25</td>
+                    <td>10:15</td>
+                </tr>
+                </tbody>
 
         </table>
     </div>
@@ -209,7 +235,7 @@
     </dialog>
 
 
-    <script defer src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script defer
         src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script defer src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
@@ -219,6 +245,15 @@
     <script src="/js/navbar-vertical.js"></script>
     <script src="/js/save-note.js"></script>
     <script src="/js/hour.js"></script>
+
+        <!-- Estos son los archivos necesarios para la conexion con la BD-->
+    
+        <script src="/js-bd/get-products.js"></script>
+        <script src="/js-bd/get-products-spring.js"></script>
+        <script src="/js-bd/get-products-summer.js"></script>
+        <script src="/js-bd/get-products-autumn.js"></script>
+        <script src="/js-bd/get-products-winter.js"></script>
+    
 
 </body>
 

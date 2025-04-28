@@ -13,10 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 sortAscending: ": Activar para ordenar la columna de manera ascendente",
                 sortDescending: ": Activar para ordenar la columna de manera descendente"
             }
-        },
-        rowGroup: {
-            dataSrc: 3 // Aquí se agrupa por la columna Temporada (índice 3)
         }
+       // rowGroup: {
+         //   dataSrc: 3 // Aquí se agrupa por la columna Temporada (índice 3)
+        //}
     });
     $('#primavera-dt').DataTable({
         language: {
@@ -32,10 +32,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 sortAscending: ": Activar para ordenar la columna de manera ascendente",
                 sortDescending: ": Activar para ordenar la columna de manera descendente"
             }
-        },
-        rowGroup: {
-            dataSrc: 3 // Aquí se agrupa por la columna Temporada (índice 3)
         }
+        //rowGroup: {
+          //  dataSrc: 3 // Aquí se agrupa por la columna Temporada (índice 3)
+        //}
     });
     $('#verano-dt').DataTable({
         language: {
@@ -51,10 +51,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 sortAscending: ": Activar para ordenar la columna de manera ascendente",
                 sortDescending: ": Activar para ordenar la columna de manera descendente"
             }
-        },
-        rowGroup: {
-            dataSrc: 3 // Aquí se agrupa por la columna Temporada (índice 3)
         }
+        //rowGroup: {
+          //  dataSrc: 3 // Aquí se agrupa por la columna Temporada (índice 3)
+        //}
     });
     $('#otonio-dt').DataTable({
         language: {
@@ -70,10 +70,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 sortAscending: ": Activar para ordenar la columna de manera ascendente",
                 sortDescending: ": Activar para ordenar la columna de manera descendente"
             }
-        },
-        rowGroup: {
-            dataSrc: 3 // Aquí se agrupa por la columna Temporada (índice 3)
         }
+        //rowGroup: {
+          //  dataSrc: 3 // Aquí se agrupa por la columna Temporada (índice 3)
+        //}
     });
     $('#invierno-dt').DataTable({
         language: {
@@ -89,10 +89,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 sortAscending: ": Activar para ordenar la columna de manera ascendente",
                 sortDescending: ": Activar para ordenar la columna de manera descendente"
             }
-        },
-        rowGroup: {
-            dataSrc: 3 // Aquí se agrupa por la columna Temporada (índice 3)
         }
+        //rowGroup: {
+          //  dataSrc: 3 // Aquí se agrupa por la columna Temporada (índice 3)
+        //}
     });
 
 });
