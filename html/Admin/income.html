@@ -36,7 +36,8 @@
 
             <div class="navbar-right">
                 <div class="navbar-icons">
-                    <i class="bi bi-journals" onclick="document.getElementById('modalNotas').showModal()"> Notas</i> <!-- Notificaciones -->
+                    <i class="bi bi-journals" onclick="document.getElementById('modalNotas').showModal()"> Notas</i>
+                    <!-- Notificaciones -->
                     <i class="fa-solid fa-moon toggle-dark-mode"> </i> <!-- Modo oscuro -->
                 </div>
             </div>
@@ -85,7 +86,7 @@
                     <ul class="submenu">
                         <div class="options-inventory sub-options">
                             <li>
-                                <a href="#">
+                                <a href="/html/Admin/modify-stock.html">
                                     <i class="bi bi-pen-fill"></i>
                                     Modificar Stock
                                 </a>
@@ -95,7 +96,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/html/Admin/seasonal-products.html">
                         <i class="bi bi-stars"></i>
                         Productos de temporada
                     </a>
@@ -118,84 +119,84 @@
 
         </div>
     </div>
-    
+
 
     <div class="resumen-container">
         <h3>Resumen de productos vendidos</h3>
-        
+
         <input type="text" id="filtroProducto" placeholder="Buscar producto..." class="input-busqueda">
 
         <div id="rango-fechas" class="rango-fechas-texto"></div>
 
-        
+
         <div class="tab-buttons">
             <button class="tab-btn active" data-tab="semana-actual">Esta semana</button>
             <button class="tab-btn" data-tab="semana-pasada">Semana pasada</button>
-          </div>
-          
-        
-          <table class="table" id="tablaProductos-semana-actual">
-            <thead>
-              <tr>
-                <th data-columna="id">ID</th>
-                <th data-columna="nombre">Producto</th>
-                <th data-columna="precio">Precio ($)</th>
-                <th data-columna="cantidad">Cantidad</th>
-                <th data-columna="total">Total ($)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- Filas generadas por JS -->
-            </tbody>
-          </table>
-
-          <table class="table hidden" id="tablaProductos-semana-pasada">
-            <thead>
-              <tr>
-                <th data-columna="id">ID</th>
-                <th data-columna="nombre">Producto</th>
-                <th data-columna="precio">Precio ($)</th>
-                <th data-columna="cantidad">Cantidad</th>
-                <th data-columna="total">Total ($)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- Filas generadas por JS -->
-            </tbody>
-          </table>
-        
-        
-        <div class="total-general" id="totalVenta">
-          <span class="total-label">TOTAL VENTA:</span>
-          <span class="total-amount">$0</span>
         </div>
-      </div>
-      
-    
-        <!-- Modal con la etiqueta <dialog> -->
-        <dialog id="modalNotas">
-            <h2>Agregar Nota</h2>
-            <input type="text" id="titulo" placeholder="Título de la nota">
-            <textarea id="nota" placeholder="Escribe tu nota aquí..."></textarea>
-            <br>
-            <button class="notes" onclick="guardarNota()">Guardar Nota</button>
-            <button class="notes" onclick="verNotas()">Ver Notas</button>
-            <button class="notes" onclick="document.getElementById('modalNotas').close()">Cerrar</button>
-        </dialog>
+
+
+        <table class="table" id="tablaProductos-semana-actual">
+            <thead>
+                <tr>
+                    <th data-columna="id">ID</th>
+                    <th data-columna="nombre">Producto</th>
+                    <th data-columna="precio">Precio ($)</th>
+                    <th data-columna="cantidad">Cantidad</th>
+                    <th data-columna="total">Total ($)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Filas generadas por JS -->
+            </tbody>
+        </table>
+
+        <table class="table hidden" id="tablaProductos-semana-pasada">
+            <thead>
+                <tr>
+                    <th data-columna="id">ID</th>
+                    <th data-columna="nombre">Producto</th>
+                    <th data-columna="precio">Precio ($)</th>
+                    <th data-columna="cantidad">Cantidad</th>
+                    <th data-columna="total">Total ($)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Filas generadas por JS -->
+            </tbody>
+        </table>
+
+
+        <div class="total-general" id="totalVenta">
+            <span class="total-label">TOTAL VENTA:</span>
+            <span class="total-amount">$0</span>
+        </div>
+    </div>
+
+
+    <!-- Modal con la etiqueta <dialog> -->
+    <dialog id="modalNotas">
+        <h2>Agregar Nota</h2>
+        <input type="text" id="titulo" placeholder="Título de la nota">
+        <textarea id="nota" placeholder="Escribe tu nota aquí..."></textarea>
+        <br>
+        <button class="notes" onclick="guardarNota()">Guardar Nota</button>
+        <button class="notes" onclick="verNotas()">Ver Notas</button>
+        <button class="notes" onclick="document.getElementById('modalNotas').close()">Cerrar</button>
+    </dialog>
 
 
 
-        <script defer src="https://code.jquery.com/jquery-3.7.1.js"></script>
-        <script defer
-            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-        <script defer src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
-        <script defer src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
-        <script src="/js/post-script.js"></script>
-        <script src="/js/data-table.js"></script>
-        <script src="/js/navbar-vertical.js"></script>
-        <script defer src="/js/generate-sale.js"></script>
-        <script src="/js/save-note.js"></script>
-        <script src="/js/income.js"></script>
+    <script defer src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script defer
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script defer src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
+    <script defer src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
+    <script src="/js/post-script.js"></script>
+    <script src="/js/data-table.js"></script>
+    <script src="/js/navbar-vertical.js"></script>
+    <script defer src="/js/generate-sale.js"></script>
+    <script src="/js/save-note.js"></script>
+    <script src="/js/income.js"></script>
 
 
 </body>
