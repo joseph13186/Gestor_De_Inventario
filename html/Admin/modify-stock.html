@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Modifiar Stock</title>
+    <title>Modificar Stock</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/index-admin.css">
     <link rel="stylesheet" href="/css/navbar-vertical-horizontal.css">
@@ -19,6 +19,7 @@
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.css">
+
     <link rel="stylesheet" href="/css/modal-new-note.css">
     <link rel="stylesheet" href="/css/modal-crud-stock.css">
     <!-- 
@@ -195,6 +196,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Producto</th>
+                            <th>Publico</th>
                             <th>Cantidad</th>
                             <th>Temporada</th>
                             <th>Descripción</th>
@@ -205,8 +207,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
-                    
+
+
                     </tbody>
 
 
@@ -220,6 +222,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Producto</th>
+                            <th>Publico</th>
                             <th>Cantidad</th>
                             <th>Temporada</th>
                             <th>Descripción</th>
@@ -230,7 +233,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                      
+
                     </tbody>
 
                 </table>
@@ -243,6 +246,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Producto</th>
+                            <th>Publico</th>
                             <th>Cantidad</th>
                             <th>Temporada</th>
                             <th>Descripción</th>
@@ -253,7 +257,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    
+
                     </tbody>
 
                 </table>
@@ -267,6 +271,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Producto</th>
+                            <th>Publico</th>
                             <th>Cantidad</th>
                             <th>Temporada</th>
                             <th>Descripción</th>
@@ -277,7 +282,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+
                     </tbody>
 
                 </table>
@@ -291,6 +296,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Producto</th>
+                            <th>Publico</th>
                             <th>Cantidad</th>
                             <th>Temporada</th>
                             <th>Descripción</th>
@@ -301,7 +307,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                   
+
                     </tbody>
 
                 </table>
@@ -310,21 +316,89 @@
     </div>
 
 
-    <!-- Modal -->
-    <!-- Modal utilizando <dialog> -->
-    <dialog id="productModal">
-        <h2 id="modalTitle">Nuevo Producto</h2>
-        <form id="productForm">
-            <input type="hidden" id="productId">
-            <label for="productName">Nombre</label>
-            <input type="text" id="productName" required>
-            <label for="productPrice">Precio</label>
-            <input type="number" id="productPrice" required>
-            <button type="submit">Guardar</button>
-        </form>
-        <button onclick="document.getElementById('productModal').close()">Cerrar</button>
-    </dialog>
+    <!-- Modal Eliminar -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Eliminación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro de que deseas eliminar este producto?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="confirmDeleteButton">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Modal Editar -->
+    <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form id="form-edit-producto">
+
+                    <!-- Este campo oculta el id del producto para saber a cuál producto vas a actualizar.-->
+                    <input type="hidden" id="edit-id_producto" name="id" readonly>
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel">Editar producto</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="edit-nombre" class="form-label">Nombre del producto</label>
+                            <input type="text" class="form-control" id="edit-nombre" name="nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-descripcion" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="edit-descripcion" name="descripcion" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3" >
+                            <label for="edit-precio" class="form-label" required>Precio</label>
+                            <div class="input-group">
+                                <span class="input-group-text px-2 py-1 w-5">$</span>
+                                <input type="number" step="0.01" class="form-control" id="edit-precio" name="precio" min="1" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-stock" class="form-label">Cantidad en stock</label>
+                            <input type="number" class="form-control" id="edit-stock" name="stock" min="1" required>
+                        </div>
+
+                        <label for="edit-temporada">Temporada:</label>
+                        <select id="edit-temporada" name="temporada" class="form-control" required>
+                            <option value="">Selecciona una temporada</option>
+                            <option value="Primavera">Primavera</option>
+                            <option value="Verano">Verano</option>
+                            <option value="Otoño">Otoño</option>
+                            <option value="Invierno">Invierno</option>
+                        </select>
+                        <br>
+
+                        <label for="edit-id_publico" class="form-label">Público</label>
+                        <select class="form-control" id="edit-id_publico" name="id_publico" required>
+                            <option value="">Selecciona un público</option>
+                            <option value="1">Hombres</option>
+                            <option value="2">Mujeres</option>
+                            <option value="3">Niños</option>
+                        </select>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Guardar cambio</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
 
 
     <!-- Modal con la etiqueta <dialog> -->
@@ -338,28 +412,45 @@
         <button class="notes" onclick="document.getElementById('modalNotas').close()">Cerrar</button>
     </dialog>
 
-    <script  src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script defer
         src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script defer src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
     <script defer src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
-    
+
+
+    <!-- Libreria para alertas ----->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
 
     <script src="/js/post-script.js"></script>
     <script src="/js/data-table-products.js"></script>
     <script src="/js/navbar-vertical.js"></script>
     <script src="/js/save-note.js"></script>
+    <!-- 
     <script src="/js/crud-stock.js"></script>
     <script src="/js/hour.js"></script>
-    
+    -->
     <!-- Estos son los archivos necesarios para la conexion con la BD-->
-    <script src="/js-bd/get-products.js"></script>
-    <script src="/js-bd/get-products-spring.js"></script>
-    <script src="/js-bd/get-products-summer.js"></script>
-    <script src="/js-bd/get-products-autumn.js"></script>
-    <script src="/js-bd/get-products-winter.js"></script>
+    <script src="/js-bd-admin/get-products-crud.js"></script>
+    <script src="/js-bd-admin/get-products-spring-crud.js"></script>
+    <script src="/js-bd-admin/get-products-summer-crud.js"></script>
+    <script src="/js-bd-admin/get-products-autumn-crud.js"></script>
+    <script src="/js-bd-admin/get-products-winter-crud.js"></script>
 
-    
+    <!-- Estos son los archivos necesarios para el manejo de la BD -->
+    <script src="/js-bd-admin/register-products.js"></script>
+    <script src="/js-bd-admin/delete-products.js"></script>
+    <script src="/js-bd-admin/edit-products.js"></script>
+
+
+
+
+
+
+
 
 
 

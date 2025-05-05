@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Productos de temporada</title>
     
-    <!-- Generamos conexion con la Base de Datos -->
+    <!-- Generamos conexion con la Base de Datos
     <script>
         function conectarBD() {
             var xhr = new XMLHttpRequest();
@@ -19,6 +19,8 @@
             xhr.send();
         }
     </script>
+    -->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/index-admin.css">
     <link rel="stylesheet" href="/css/navbar-vertical-horizontal.css">
@@ -91,8 +93,6 @@
                 <ul class="dropdown-menu">
                     <li><a href="#">Ver empleados</a></li>
                     <li><a href="#">Cerrar sesión</a></li>
-                    <h1>Conexión con Base de Datos con AJAX</h1>
-                        <button onclick="conectarBD()">Conectar a la Base de Datos</button>
                 </ul>
             </div>
         </div>
@@ -204,6 +204,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Producto</th>
+                            <th>Publico</th>
                             <th>Cantidad</th>
                             <th>Temporada</th>
                             <th>Descripción</th>
@@ -228,6 +229,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Producto</th>
+                            <th>Publico</th>
                             <th>Cantidad</th>
                             <th>Temporada</th>
                             <th>Descripción</th>
@@ -251,6 +253,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Producto</th>
+                            <th>Publico</th>
                             <th>Cantidad</th>
                             <th>Temporada</th>
                             <th>Descripción</th>
@@ -261,17 +264,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>2</td>
-                            <td>Producto B</td>
-                            <td>50</td>
-                            <td>Verano</td>
-                            <td>Descripción del productos</td>
-                            <td>$20.00</td>
-                            <td>2023-01-15</td>
-                            <td>2023-10-01</td>
-                            <td>14:30</td>
-                        </tr>
+
                     </tbody>
 
                 </table>
@@ -285,6 +278,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Producto</th>
+                            <th>Publico</th>
                             <th>Cantidad</th>
                             <th>Temporada</th>
                             <th>Descripción</th>
@@ -295,17 +289,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>3</td>
-                            <td>Producto C</td>
-                            <td>10</td>
-                            <td>Otoño</td>
-                            <td>Descripción del productos</td>
-                            <td>$20.00</td>
-                            <td>2023-01-15</td>
-                            <td>2023-10-01</td>
-                            <td>14:30</td>
-                        </tr>
+
                     </tbody>
 
                 </table>
@@ -319,6 +303,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Producto</th>
+                            <th>Publico</th>
                             <th>Cantidad</th>
                             <th>Temporada</th>
                             <th>Descripción</th>
@@ -329,17 +314,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>4</td>
-                            <td>Producto D</td>
-                            <td>50</td>
-                            <td>Invierno</td>
-                            <td>Descripción del productos</td>
-                            <td>$20.00</td>
-                            <td>2023-01-15</td>
-                            <td>2023-10-01</td>
-                            <td>14:30</td>
-                        </tr>
+
                     </tbody>
 
                 </table>
@@ -374,10 +349,9 @@
     <script src="/js/data-table-products.js"></script>
     <script src="/js/navbar-vertical.js"></script>
     <script src="/js/save-note.js"></script>
-    <script src="/js/hour.js"></script>
 
-    <!-- Estos son los archivos necesarios para la conexion con la BD-->
-    
+
+    <!-- Estos son los archivos necesarios para obtener los datos de la BD-->
     <script src="/js-bd/get-products.js"></script>
     <script src="/js-bd/get-products-spring.js"></script>
     <script src="/js-bd/get-products-summer.js"></script>

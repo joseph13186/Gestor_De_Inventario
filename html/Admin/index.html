@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Index</title>
 
-      <!-- Generamos conexion con la Base de Datos -->
+      <!-- Generamos conexion con la Base de Datos 
       <script>
         function conectarBD() {
             var xhr = new XMLHttpRequest();
@@ -19,6 +19,7 @@
             xhr.send();
         }
     </script>
+    -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/index-admin.css">
     <link rel="stylesheet" href="/css/navbar-vertical-horizontal.css">
@@ -30,6 +31,10 @@
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.css">
+
+    <!-- Libreria para alertas ----->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <link rel="stylesheet" href="/css/modal-new-note.css">
 
@@ -164,6 +169,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Producto</th>
+                    <th>Publico</th>
                     <th>Cantidad</th>
                     <th>Temporada</th>
                     <th>Descripción</th>
@@ -171,54 +177,13 @@
                     <th>Fecha de ingreso</th>
                     <th>Fecha de última compra</th>
                     <th>Hora de última compra</th>
+
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Producto A</td>
-                    <td>10</td>
-                    <td>Verano</td>
-                    <td>Descripción del productos</td>
-                    <td>$20.00</td>
-                    <td>2023-01-15</td>
-                    <td>2023-10-01</td>
-                    <td>14:30</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Producto B</td>
-                    <td>5</td>
-                    <td>Invierno</td>
-                    <td>Descripción del productos</td>
-                    <td>$15.00</td>
-                    <td>2023-02-20</td>
-                    <td>2023-09-25</td>
-                    <td>10:15</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Producto C</td>
-                    <td>8</td>
-                    <td>Primavera</td>
-                    <td>Descripción del productos</td>
-                    <td>$25.00</td>
-                    <td>2023-03-10</td>
-                    <td>2023-08-30</td>
-                    <td>16:45</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Producto B</td>
-                    <td>5</td>
-                    <td>Invierno</td>
-                    <td>Descripción del productos</td>
-                    <td>$15.00</td>
-                    <td>2023-02-20</td>
-                    <td>2023-09-25</td>
-                    <td>10:15</td>
-                </tr>
-                </tbody>
+              
+    
+            </tbody>
 
         </table>
     </div>

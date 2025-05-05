@@ -16,6 +16,7 @@ function cargarProductosSummer() {
                 table.row.add([
                     registro.id_producto,
                     registro.nombre,
+                    registro.publico,
                     registro.stock,
                     registro.temporada,
                     registro.descripcion,
@@ -23,9 +24,9 @@ function cargarProductosSummer() {
                     registro.fecha_registro,
                     registro.fecha_ultima_compra,
                     registro.hora_ultima_compra
-                ]).draw(false);  // Añadimos la fila al DataTable
+                ])//.draw(false);   Añadimos la fila al DataTable
             });
-            table.draw(); // Solo llamamos draw una vez
+            table.draw(false); // Solo llamamos draw una vez
 
         },
         error: function(error) {

@@ -14,7 +14,10 @@ $conn = $conexion->conexionBD(); // Este método no está devolviendo nada ahora
 
 if ($conn) {
 // Realizamos la consulta para obtener los datos de la base de datos
-$query = "SELECT id_producto, nombre, stock,temporada, descripcion, precio,fecha_registro,fecha_ultima_compra,hora_ultima_compra FROM Productos";
+$query = "SELECT 
+pro.id_producto, pro.nombre, pu.nombre AS publico, pro.stock,temporada, pro.descripcion, pro.precio, TO_CHAR(pro.fecha_registro, 'TMDay, DD \"de\" TMMonth \"de\" YYYY') AS fecha_registro, TO_CHAR(pro.fecha_ultima_compra, 'TMDay, DD \"de\" TMMonth \"de\" YYYY') AS fecha_ultima_compra, pro.hora_ultima_compra
+from productos pro
+JOIN publico pu on pro.id_publico = pu.id_publico;";
 //<th>Fecha de ingreso</th>
 //<th>Fecha de última compra</th>
 //<th>Hora de última compra</th>

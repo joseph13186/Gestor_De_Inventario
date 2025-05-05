@@ -16,6 +16,7 @@ function cargarProductosAutumn() {
                 table.row.add([
                     registro.id_producto,
                     registro.nombre,
+                    registro.publico,
                     registro.stock,
                     registro.temporada,
                     registro.descripcion,
