@@ -56,7 +56,8 @@ async function modalRegistrarProducto() {
           // Aquí puedes hacer un chequeo por palabra clave si tu PHP no responde siempre igual:
           if (resultado.toLowerCase().includes("éxito") || resultado.toLowerCase().includes("registrado")) {
             toastr.success("Producto registrado correctamente 🎉", "¡Éxito!");
-            cargarProductos(); // Recarga la tabla manualmente
+            //cargarProductos(); // Recarga la tabla manualmente
+            recargarTablas();
 
           } else {
             toastr.warning("Respuesta inesperada: " + resultado, "Atención");

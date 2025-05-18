@@ -124,3 +124,10 @@ tr {
 
 
 }
+
+
+#new-product-quantity {
+    background-color: #04823880; /* color de fondo */
+    color: #ffffff;           /* color del texto */
+    border-color: #007bff;    /* opcional: color del borde */
+}

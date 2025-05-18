@@ -53,47 +53,32 @@ $totalRelaciones = $stmtCheck->fetchColumn();
 Con bindParam(':id', $id), le decimos a PDO:
 "Reemplaza :id con el valor que está en $id (o sea, 30)".
 */
-if ($totalRelaciones > 0) {
-    // 2. Producto relacionado → NO eliminar
-    $sqlDelete = "UPDATE productos SET activo = FALSE WHERE id_producto = :id";
-    $stmtDelete = $conn->prepare($sqlDelete);
-    $stmtDelete->bindParam(':id', $id, PDO::PARAM_INT);
+    // 2. Activar el producto
+    $sqlActive  = "UPDATE productos SET activo = TRUE WHERE id_producto = :id";
+    $stmtActive = $conn->prepare($sqlActive);
+    $stmtActive->bindParam(':id', $id, PDO::PARAM_INT);
 
-        if ($stmtDelete->execute()) {
-
+    if ($stmtActive->execute()) {
     echo json_encode([
         'status' => 'success',
         'message' => [
-        ['type' => 'info', 'text' => 'Puede ir a la sección de "Productos Descontinuados" para volver a activarlo.'],
-        ['type' => 'info', 'text' => 'Por lo tanto el producto será marcado como descontinuado.'],
-        ['type' => 'warning', 'text' => 'El producto no se puede eliminar porque está relacionado con alguna venta o aun contiene stock.']
+        ['type' => 'warning', 'text' => 'Después de 6 meses, la descontinuación será definitiva.'],
+        ['type' => 'info', 'text' => 'Acción recomendada: Actualice el stock según la necesidad.'],
+        ['type' => 'success', 'text' => 'Reactivación exitosa: El producto volverá a estar disponible.']
 
         ]
     ]);
     }
 
-} else {
-    // 3. Producto sin relaciones → desactivar o eliminar
-    $sqlDelete = "UPDATE productos SET activo = FALSE WHERE id_producto = :id";
-    $stmtDelete = $conn->prepare($sqlDelete);
-    $stmtDelete->bindParam(':id', $id, PDO::PARAM_INT);
-    
-    if ($stmtDelete->execute()) {
-        echo json_encode([
-            'status' => 'success',
-            'message' => 'Producto eliminado correctamente.🗑️'
-            
-        ]);
-       
-    } else {
+ else {
         echo json_encode([
             'status' => 'error',
             'message' => 'El producto tiene una venta.'
         ]);
         echo json_encode([
             'status' => 'error',
-            'message' => 'Error al intentar eliminar el producto.'
+            'message' => 'Error al intentar reactivar el producto.'
         ]);
     }
-}
+
 ?>

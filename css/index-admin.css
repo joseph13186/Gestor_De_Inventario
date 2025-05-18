@@ -38,7 +38,11 @@
         left: 5px;
         width: 200px;
         /* Ajusta el tamaño de la barra lateral */
-        height: 99%;
+        height: 100vh;
+        /* Asegura que ocupe toda la altura de la ventana */
+        overflow-y: auto;
+
+
         background-color: rgba(0, 177, 157, 255);
         padding-top: 70px;
         /* Espacio superior para que no se superponga con la navbar */
@@ -55,6 +59,7 @@
 
         box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.2);
         /* Sombra lateral */
+
     }
 
     /* Estilos de los enlaces en el menú vertical */
@@ -97,6 +102,7 @@
         width: 200px;
         box-sizing: border-box;
         border-radius: 0px;
+
     }
 
     /* Mostrar el submenú cuando se tiene la clase 'open' */
@@ -150,7 +156,8 @@
         /* Estilo para la etiqueta "a" dentro de los submenus*/
         a {
             background-color: #008f8a;
-            padding: 10px 40px;
+            /* padding: 10px 40px;*/
+            padding: 6px 34px;
             border: 1px solid transparent;
             box-shadow: 0 2px 5px rgba(84, 84, 84, 0.8);
 
@@ -158,6 +165,32 @@
         }
 
     }
+
+    /* Es para el diseño del scroll de la barra de navegacion Vertical*/
+    .navigation-bar::-webkit-scrollbar {
+        width: 6px;
+        /* Ancho del scrollbar */
+    }
+
+    .navigation-bar::-webkit-scrollbar-track {
+        background: transparent;
+        /* Fondo del track (invisible o sutil) */
+    }
+
+    /*Este es el color que mostrara por defecto en cualquier momento
+    por eso habra que dejarlo transparente*/
+
+    .navigation-bar::-webkit-scrollbar-thumb {
+        background-color: rgba(186, 6, 6, 0);
+        /* Color del "pulgar" de scroll */
+        border-radius: 10px;
+    }
+    /* Cuando pasemo el mouse por la barra se pone de ese color */
+    .navigation-bar::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(43, 42, 42, 0.162);
+        /* Color al pasar el cursor */
+    }
+
 
 
     /* Sirve para dar formato al logo que tenemos */
@@ -203,9 +236,12 @@
             /* Ajusta el tamaño de la barra lateral */
             height: 98.8%;
         }
-        .navbar{
-            left: 0; /* Evita que la navbar se salga del viewport */
-            width: 100%; /* Asegura que siempre ocupe el 100% del ancho */
+
+        .navbar {
+            left: 0;
+            /* Evita que la navbar se salga del viewport */
+            width: 100%;
+            /* Asegura que siempre ocupe el 100% del ancho */
         }
 
 

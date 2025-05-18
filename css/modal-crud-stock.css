@@ -10,3 +10,14 @@ dialog {
   max-width: 90%;
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
+
+.btn-azul {
+    background-color: #07a5d5c2;
+    color: white;
+    border: none;
+}
+
+.btn-azul:hover {
+    background-color: #166fc885;
+    
+}

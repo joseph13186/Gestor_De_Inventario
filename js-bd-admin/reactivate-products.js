@@ -1,6 +1,6 @@
 function eliminarProducto(id) {
     $.ajax({
-        url: `http://127.0.0.1:8000/php-bd/products-delete.php?id=${id}`,
+        url: `http://127.0.0.1:8000/php-bd/products-reactivate.php?id=${id}`,
         type: 'GET',
         success: function (response) {
             try {

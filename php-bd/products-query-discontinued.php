@@ -1,5 +1,4 @@
 <?php
-//Primavera
 header("Access-Control-Allow-Origin: http://127.0.0.1:5500");  // Asegura CORS si accedes desde tu frontend
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Content-Type: application/json");
@@ -44,13 +43,9 @@ LEFT JOIN (
 ) AS ultima_venta ON pro.id_producto = ultima_venta.id_producto AND ultima_venta.rn = 1
 LEFT JOIN
     ventas v ON ultima_venta.id_venta = v.id_venta
-WHERE activo = 'True' AND temporada = 'Primavera';";
+WHERE activo = 'False';";
 
 
-
-//<th>Fecha de ingreso</th>
-//<th>Fecha de última compra</th>
-//<th>Hora de última compra</th>
 $stmt = $conn->prepare($query);
 $stmt->execute();
 
@@ -64,7 +59,5 @@ echo json_encode($productos);
     echo json_encode(["error" => "No se pudo conectar a la base de datos"]);
 }
 // Enviamos los resultados como un JSON
-
-
 
 ?>
