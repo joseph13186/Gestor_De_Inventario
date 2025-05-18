@@ -18,11 +18,35 @@ if ($conn) {
 $conn->query("SET lc_time = 'es_ES'");
 
 $query = "SELECT 
-pro.id_producto, pro.nombre, pu.nombre AS publico, pro.stock,temporada, pro.descripcion, pro.precio, TO_CHAR(pro.fecha_registro, 'TMDay, DD \"de\" TMMonth \"de\" YYYY') AS fecha_registro, 
-pro.fecha_ultima_compra,pro.hora_ultima_compra
-from productos pro
-JOIN publico pu on pro.id_publico = pu.id_publico
-WHERE temporada='Otoño';";
+    pro.id_producto, 
+    pro.nombre, 
+    pu.nombre AS publico, 
+    pro.stock,
+    pro.temporada, 
+    pro.descripcion, 
+    pro.precio, 
+    TO_CHAR(pro.fecha_registro, 'TMDay, DD \"de\" TMMonth \"de\" YYYY') AS fecha_registro,
+    TO_CHAR(v.fecha_hora_venta, 'TMDay, DD \"de\" TMMonth \"de\" YYYY') AS fecha_ultima_compra,
+    TO_CHAR(v.fecha_hora_venta, 'HH12:MI:SS') AS hora_ultima_compra
+FROM 
+    productos pro
+JOIN 
+    publico pu ON pro.id_publico = pu.id_publico
+LEFT JOIN (
+    SELECT 
+        dv.id_producto,
+        v.fecha_hora_venta,
+		v.id_venta,  -- ¡Esta es la columna que faltaba!
+
+        ROW_NUMBER() OVER (PARTITION BY dv.id_producto ORDER BY v.fecha_hora_venta DESC) AS rn
+    FROM 
+        detalle_venta dv
+    JOIN 
+        ventas v ON dv.id_venta = v.id_venta
+) AS ultima_venta ON pro.id_producto = ultima_venta.id_producto AND ultima_venta.rn = 1
+LEFT JOIN
+    ventas v ON ultima_venta.id_venta = v.id_venta
+WHERE activo = 'True' AND temporada = 'Otoño';";
 
 $stmt = $conn->prepare($query);
 $stmt->execute();

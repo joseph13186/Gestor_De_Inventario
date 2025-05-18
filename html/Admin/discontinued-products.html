@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Modificar Stock</title>
+    <title>Productos descontinuados</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/index-admin.css">
     <link rel="stylesheet" href="/css/navbar-vertical-horizontal.css">
@@ -116,13 +116,13 @@
                     <ul class="submenu">
                         <div class="options-inventory sub-options">
                             <li>
-                                <a href="#">
+                                <a href="modify-stock.html">
                                     <i class="bi bi-pen-fill"></i>
                                     Modificar Stock
                                 </a>
                             </li>
                             <li>
-                                <a href="/html/Admin/discontinued-products.html">
+                                <a href="#">
                                     <i class="fa-solid fa-recycle"></i>
                                     Productos desontinuados
                                 </a>
@@ -150,11 +150,13 @@
                 <span class="mac-dot green"></span>
             </div>
             <div class="mac-content">
-                <h2><i class="fa-solid fa-cubes-stacked"></i> Modificar stock.</h2>
+                <h2><i class="fa-solid fa-window-restore"></i> Productos Descontinuados.</h2>
             </div>
             <div class="recommend-2">
-                <h3><i class="fa-solid fa-comment"></i> Aquí puede agregar, quitar o modificar los productos
-                    en existencia.</h3>
+                <h3><i class="fa-solid fa-comment"></i> En esta sección se muestran todos los 
+                    productos eliminados y marcados como descontinuados. 
+                    Tiene la opción de reactivarlos, pero tenga en cuenta que 
+                    después de 6 meses este cambio se volverá permanente.</h3>
             </div>
         </div>
     </div>
@@ -165,36 +167,14 @@
                 <button class="nav-link active" id="todos-tab" data-bs-toggle="tab" data-bs-target="#todos"
                     type="button" role="tab">Todos</button>
             </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="primavera-tab" data-bs-toggle="tab" data-bs-target="#primavera"
-                    type="button" role="tab">Primavera</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="verano-tab" data-bs-toggle="tab" data-bs-target="#verano" type="button"
-                    role="tab">Verano</button>
-            </li>
 
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="otonio-tab" data-bs-toggle="tab" data-bs-target="#otonio" type="button"
-                    role="tab">Otoño</button>
-            </li>
-
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="invierno-tab" data-bs-toggle="tab" data-bs-target="#invierno" type="button"
-                    role="tab">Invierno</button>
-            </li>
 
         </ul>
 
         <!-- Contenido de pestañas -->
         <div class="tab-content" id="myTabContent">
             <br>
-            <!-- Botón para abrir el modal -->
-            <div class="d-flex justify-content-end mb-3">
-                <button id="btnNuevoProducto" class="btn btn-success">
-                    <i class="bi bi-plus-circle"></i> Agregar Producto
-                </button>
-            </div>
+
 
             <div class="tab-pane fade show active" id="todos" role="tabpanel" aria-labelledby="todos-tab">
                 <table id="todos-dt">
@@ -208,7 +188,7 @@
                             <th>Descripción</th>
                             <th>Precio (c/u)</th>
                             <th>Fecha de ingreso</th>
-                            <th>Fecha de último ingreso</th>
+                            <th>Fecha de última venta</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -220,129 +200,32 @@
 
                 </table>
             </div>
-            <!-- TAB PRIMAVERA -->
-            <div class="tab-pane fade" id="primavera" role="tabpanel" aria-labelledby="primavera-tab">
-                <!-- Aquí va la tabla con productos de temporada Verano -->
-                <table id="primavera-dt">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Producto</th>
-                            <th>Publico</th>
-                            <th>Stock</th>
-                            <th>Temporada</th>
-                            <th>Descripción</th>
-                            <th>Precio (c/u)</th>
-                            <th>Fecha de ingreso</th>
-                            <th>Fecha de último ingreso</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
 
-                    </tbody>
-
-                </table>
-            </div>
-            <!-- TAB VERANO -->
-            <div class="tab-pane fade" id="verano" role="tabpanel" aria-labelledby="verano-tab">
-                <!-- Aquí va la tabla con productos de temporada Verano -->
-                <table id="verano-dt">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Producto</th>
-                            <th>Publico</th>
-                            <th>Stock</th>
-                            <th>Temporada</th>
-                            <th>Descripción</th>
-                            <th>Precio (c/u)</th>
-                            <th>Fecha de ingreso</th>
-                            <th>Fecha de último ingreso</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-
-                </table>
-            </div>
-
-            <!-- TAB OTOÑO -->
-            <div class="tab-pane fade" id="otonio" role="tabpanel" aria-labelledby="otonio-tab">
-                <!-- Aquí va la tabla con productos de temporada Verano -->
-                <table id="otonio-dt">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Producto</th>
-                            <th>Publico</th>
-                            <th>Stock</th>
-                            <th>Temporada</th>
-                            <th>Descripción</th>
-                            <th>Precio (c/u)</th>
-                            <th>Fecha de ingreso</th>
-                            <th>Fecha de último ingreso</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-
-                </table>
-            </div>
-
-            <!-- TAB INVIERNO -->
-            <div class="tab-pane fade" id="invierno" role="tabpanel" aria-labelledby="invierno-tab">
-                <!-- Aquí va la tabla con productos de temporada Verano -->
-                <table id="invierno-dt">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Producto</th>
-                            <th>Publico</th>
-                            <th>Stock</th>
-                            <th>Temporada</th>
-                            <th>Descripción</th>
-                            <th>Precio (c/u)</th>
-                            <th>Fecha de ingreso</th>
-                            <th>Fecha de último ingreso</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-
-                </table>
-            </div>
         </div>
     </div>
 
 
-    <!-- Modal Eliminar -->
-    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+    <!-- Modal Reactivar -->
+    <div class="modal fade" id="confirmReactivateModal" tabindex="-1" aria-labelledby="confirmReactivateModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Eliminación</h5>
+                    <h5 class="modal-title" id="confirmReactivateModalLabel">Confirmar la Reactivación</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
-                <div class="modal-body" style="align-items: center;">
-                        El producto puede estar relacionado con alguna venta,<br>en ese caso se marcara como descontinuado.
+                <div class="modal-body" style="text-align: center;">
+                        El producto volverá a estar activo y visible. <br>No olvides revisar el stock. <br> 🔔 Recuerda: Si no lo modificas antes, en 6 meses se descontinuará permanentemente.
                 </div>
                 <div class="modal-body" >
-                    <b>¿Estás seguro de que deseas eliminar este producto?</b>
+                    <b>¿Estás seguro de que deseas reactivar este producto?</b>
                 </div>
                 
                 <div class="modal-footer">
 
 
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-danger" id="confirmDeleteButton">Eliminar</button>
+                    <button type="button" class="btn btn-azul" id="confirmReactivateButton">Reactivarlo</button>
                 </div>
             </div>
         </div>
@@ -446,7 +329,7 @@
     <script src="/js/hour.js"></script>
     -->
     <!-- Estos son los archivos necesarios para la conexion con la BD-->
-    <script src="/js-bd-admin/get-products-crud.js"></script>
+    <script src="/js-bd-admin/get-products-discontinued.js"></script>
     <script src="/js-bd-admin/get-products-spring-crud.js"></script>
     <script src="/js-bd-admin/get-products-summer-crud.js"></script>
     <script src="/js-bd-admin/get-products-autumn-crud.js"></script>
@@ -454,18 +337,8 @@
 
     <!-- Estos son los archivos necesarios para el manejo de la BD -->
     <script src="/js-bd-admin/register-products.js"></script>
-    <script src="/js-bd-admin/delete-products.js"></script>
+    <script src="/js-bd-admin/reactivate-products.js"></script>
     <script src="/js-bd-admin/edit-products.js"></script>
-
-
-
-
-
-
-
-
-
-
 
 
 </body>

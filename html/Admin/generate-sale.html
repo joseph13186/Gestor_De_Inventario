@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Generar una venta</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    
 
     <link rel="stylesheet" href="/css/index-admin.css">
     <link rel="stylesheet" href="/css/navbar-vertical-horizontal.css">
@@ -19,6 +20,10 @@
 
     <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.css">
     <link rel="stylesheet" href="/css/modal-new-note.css">
+    
+    <!-- Este css es para el cuadro total de la venta -->
+    <link rel="stylesheet" href="/css/income.css">
+
 
 
 
@@ -90,6 +95,13 @@
                                     Modificar Stock
                                 </a>
                             </li>
+                            
+                            <li>
+                                <a href="/html/Admin/discontinued-products.html">
+                                    <i class="fa-solid fa-recycle"></i>
+                                    Productos desontinuados
+                                </a>
+                            </li>
 
                         </div>
                     </ul>
@@ -119,6 +131,15 @@
         </div>
     </div>
     <div class="table-container">
+        <div class="d-flex justify-content-end mb-3">
+            <button id="btnNuevoCompra" class="btn btn-success" >
+                <i class="bi bi-check-circle-fill" ></i> Confirmar Compra
+            </button>
+        </div>
+        <div class="total-general-venta" id="totalVenta">
+            <span class="total-label">TOTAL DE LA VENTA:</span>
+            <span class="total-amount">$0</span>
+        </div>
         <table id="todos-dt">
             <thead>
                 <tr>
@@ -128,21 +149,12 @@
                     <th>Temporada</th>
                     <th>Descripción</th>
                     <th>Precio (c/u)</th>
-                    <th>Total</th>
+                    <th>Subtotal</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+             
 
 
                 <tr id="new-product-row">
@@ -150,7 +162,7 @@
                         <input type="text" id="new-product-id" class="search" placeholder="ID">
                     </td>
                     <td>
-                        <input type="text" id="new-product-name" class="search" placeholder="Nombre">
+                        <textarea id="new-product-name" class="search" placeholder="Nombre"></textarea>
                     </td>
                     <td>
                         <input type="number" id="new-product-quantity" class="search cantidad" inputmode="numeric" min=0
@@ -161,8 +173,8 @@
                             readonly>
                     </td>
                     <td>
-                        <input type="text" id="new-product-description" class="non-modifiable" placeholder="Descripción"
-                            readonly>
+                        <textarea type="text" id="new-product-description" class="non-modifiable" placeholder="Descripción"
+                            readonly></textarea>
                     </td>
                     <td>
                         <input type="number" id="new-product-price" class="non-modifiable" placeholder="Precio"
@@ -199,7 +211,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
-                    ¿Estás seguro de que deseas eliminar este producto?
+                    ¿Estás seguro de que deseas eliminar este producto de la lista?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -222,16 +234,30 @@
 
 
 
-    <script defer src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script  src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script defer
         src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script defer src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
     <script defer src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
+
+    <!-- Libreria para alertas ----->
+     <!-- Toastr CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
     <script src="/js/post-script.js"></script>
     <script src="/js/data-table.js"></script>
     <script src="/js/navbar-vertical.js"></script>
-    <script defer src="/js/generate-sale.js"></script>
     <script src="/js/save-note.js"></script>
+
+
+    
+    <!-- Esto sirve para poder crear la alta en la BD en la tabla de ventas -->
+     
+    <script defer src="/js/generate-sale.js"></script>
+    
 
 
 </body>

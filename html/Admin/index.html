@@ -18,7 +18,7 @@
             };
             xhr.send();
         }
-    </script>
+        </script>
     -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/index-admin.css">
@@ -133,6 +133,14 @@
                                 </a>
                             </li>
 
+                            <li>
+                                <a href="discontinued-products.html">
+                                    <i class="fa-solid fa-recycle"></i>
+                                    Productos desontinuados
+                                </a>
+                            </li>
+                            
+
                         </div>
                     </ul>
                 </li>
@@ -170,7 +178,7 @@
                     <th>ID</th>
                     <th>Producto</th>
                     <th>Publico</th>
-                    <th>Cantidad</th>
+                    <th>Stock</th>
                     <th>Temporada</th>
                     <th>Descripción</th>
                     <th>Precio (c/u)</th>
@@ -205,11 +213,12 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script defer src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
     <script defer src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
+
     <script src="/js/post-script.js"></script>
+
     <script src="/js/data-table.js"></script>
     <script src="/js/navbar-vertical.js"></script>
     <script src="/js/save-note.js"></script>
-    <script src="/js/hour.js"></script>
 
         <!-- Estos son los archivos necesarios para la conexion con la BD-->
     
@@ -218,15 +227,6 @@
         <script src="/js-bd/get-products-summer.js"></script>
         <script src="/js-bd/get-products-autumn.js"></script>
         <script src="/js-bd/get-products-winter.js"></script>
-        <script src="/js/login.js"></script>
-
-        
-<script>
-    function cerrarSesion() {
-    localStorage.clear();
-    window.location.href = "/html/login.html";
-} 
-</script>
     
 
 </body>

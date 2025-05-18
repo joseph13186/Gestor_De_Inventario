@@ -1,10 +1,30 @@
+// Configura toastr al inicio
+toastr.options = {
+    "closeButton": true,
+    "progressBar": true,
+    "positionClass": "toast-top-right",
+    "timeOut": "40000"
+};
+
+
 $(document).ready(function () {
-    // "Base de datos" simulada con productos
-    var products = [
-        { id: 'A', name: 'Producto A', season: 'Verano', description: 'Descripción del producto A', price: 20 },
-        { id: 'B', name: 'Producto B', season: 'Invierno', description: 'Descripción del producto B', price: 15 },
-        { id: 'C', name: 'Producto C', season: 'Primavera', description: 'Descripción del producto C', price: 25 }
-    ];
+
+    // Esto llenará el array products con la respuesta del servidor (una lista de objetos con id, name, season, description, price, etc.).
+    let products = [];
+
+    $.ajax({
+        url: 'http://127.0.0.1:8000/php-bd/products-query.php',
+        method: 'GET',
+        success: function (data) {
+            //console.log(data);  // Esto ayuda a ver lo que devuelve el servidor
+
+            products = data;
+        },
+        error: function () {
+            alert('No se pudieron cargar los productos desde el servidor.');
+        }
+    });
+
 
     // Autocompletar campos al ingresar el nombre o ID en los campos de búsqueda
     $('#new-product-id, #new-product-name').on('input', function () {
@@ -13,21 +33,22 @@ $(document).ready(function () {
 
         // Buscar en la base de datos si el ID o nombre coincide
         var found = products.find(function (p) {
-            return p.id.toLowerCase() === inputValId || p.name.toLowerCase() === inputValName;
+            return p.id_producto.toString() === inputValId || p.nombre.toLowerCase() === inputValName;
         });
 
         if (found) {
             // Autocompletar los campos
-            if (inputValId && found.id.toLowerCase() === inputValId) {
-                $('#new-product-name').val(found.name); // Autocompletar el nombre si encontramos por ID
-            } else if (inputValName && found.name.toLowerCase() === inputValName) {
-                $('#new-product-id').val(found.id); // Autocompletar el ID si encontramos por nombre
+            if (inputValId && found.id_producto.toString() === inputValId) {
+                $('#new-product-name').val(found.nombre); // Autocompletar el nombre si encontramos por ID
+            } else if (inputValName && found.nombre.toLowerCase() === inputValName) {
+                $('#new-product-id').val(found.id_producto); // Autocompletar el ID si encontramos por nombre
             }
 
-            $('#new-product-season').val(found.season);
-            $('#new-product-description').val(found.description);
-            $('#new-product-price').val(found.price);
+            $('#new-product-season').val(found.temporada);
+            $('#new-product-description').val(found.descripcion);
+            $('#new-product-price').val(found.precio);
             updateTotal(); // Actualiza el total si ya se ingresó cantidad
+            calcularTotalGeneralVenta();
         } else {
             // Limpiar si no hay coincidencia
             $('#new-product-season, #new-product-description, #new-product-price').val('');
@@ -51,9 +72,11 @@ $(document).ready(function () {
         $(this).val(value);
 
         updateTotal();
+        calcularTotalGeneralVenta();
     });
 
     function updateTotal() {
+        
         var quantity = parseFloat($('#new-product-quantity').val());
         var price = parseFloat($('#new-product-price').val());
         if (!isNaN(quantity) && !isNaN(price)) {
@@ -63,6 +86,25 @@ $(document).ready(function () {
             $('#new-product-total').text('');
         }
     }
+
+    function calcularTotalGeneralVenta() {
+    let totalVenta = 0;
+      $('#todos-dt tbody tr').each(function () {
+        // Obtener el texto de la columna "Total" (7ª columna, índice 6)
+        let totalTexto = $(this).find('td:eq(6)').text().replace('$', '').trim();
+        let totalProducto = parseFloat(totalTexto);
+
+        if (!isNaN(totalProducto)) {
+            totalVenta += totalProducto;
+        }
+    });
+
+    // Mostrar el total formateado
+    //$('#totalVenta .total-amount').text('$' + totalVenta.toFixed(2));
+    $('#totalVenta .total-amount').text('$' + totalVenta.toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+
+}
+
 
     // Guardar la fila nueva en la tabla de manera definitiva
     $('#save-new-product').click(function () {
@@ -94,7 +136,8 @@ $(document).ready(function () {
             $('#new-product-name, #new-product-id, #new-product-quantity, #new-product-season, #new-product-description, #new-product-price').val('');
             $('#new-product-total').text('');
         } else {
-            alert("Por favor, complete los datos del producto.");
+            //alert("Por favor, complete los datos del producto.");
+            toastr.warning("Por favor, complete los datos del producto.", "Precaución");
         }
     });
 
@@ -126,9 +169,11 @@ $(document).ready(function () {
 
         // Asegurarse de que el total se actualice correctamente al cambiar la cantidad
         updateTotal();
+    
 
         // Eliminar la fila original para actualizarla después
         row.remove();
+        calcularTotalGeneralVenta();
 
         // Mostrar el botón de "Actualizar" y "Cancelar", ocultar el de "Guardar"
         $('#save-new-product').hide();
@@ -170,32 +215,35 @@ $(document).ready(function () {
         $('#update-product').hide();
         $('#cancel-update').hide();
         $('#save-new-product').show();
+
     });
 
     // Eliminar un producto
-    $(document).ready(function () {
-        var rowToDelete = null; // Variable para almacenar la fila a eliminar
+    var rowToDelete = null; // Variable para almacenar la fila a eliminar
 
-        // Cuando se haga clic en el botón "Eliminar", mostrar el modal
-        $(document).on('click', '.delete-product', function () {
-            rowToDelete = $(this).closest('tr'); // Guardamos la fila a eliminar
-            $('#confirmDeleteModal').modal('show'); // Mostrar el modal de confirmación
-        });
-
-        // Cuando se confirme la eliminación, eliminar la fila
-        $('#confirmDeleteButton').click(function () {
-            if (rowToDelete) {
-                rowToDelete.remove(); // Eliminar la fila
-                rowToDelete = null; // Reiniciar la variable
-                $('#confirmDeleteModal').modal('hide'); // Cerrar el modal
-            }
-        });
+    // Cuando se haga clic en el botón "Eliminar", mostrar el modal
+    $(document).on('click', '.delete-product', function () {
+        rowToDelete = $(this).closest('tr'); // Guardamos la fila a eliminar
+        $('#confirmDeleteModal').modal('show'); // Mostrar el modal de confirmación
     });
+
+    // Cuando se confirme la eliminación, eliminar la fila
+    $('#confirmDeleteButton').click(function () {
+        if (rowToDelete) {
+            rowToDelete.remove(); // Eliminar la fila
+            rowToDelete = null; // Reiniciar la variable
+            $('#confirmDeleteModal').modal('hide'); // Cerrar el modal
+            calcularTotalGeneralVenta();
+
+        }
+    });
+
 
     // Limpiar las filas por cualquier error de las celdas
     $('#clean-product').click(function () {
-        $('#new-product-id, #new-product-name, #new-product-season, #new-product-description, #new-product-price').val('');
+        $('#new-product-id, #new-product-name, #new-product-season,#new-product-description, #new-product-price').val('');
         $('#new-product-total').text('');
+        calcularTotalGeneralVenta();
     });
 
     // Cancelar la edición y restaurar la fila original
@@ -213,6 +261,8 @@ $(document).ready(function () {
             $('#update-product').hide();
             $('#cancel-update').hide();
             $('#save-new-product').show();
+            calcularTotalGeneralVenta();
+
 
         }
 
@@ -226,8 +276,65 @@ $(document).ready(function () {
         $('#save-new-product').show();
     });
 
-
 });
 
 
+$('#btnNuevoCompra').click(function () {
+    let productos = [];
 
+    // Iterar sobre cada fila que NO sea la fila de entrada
+    $('#todos-dt tbody tr').not('#new-product-row').each(function () {
+        let id = $(this).find('td:eq(0)').text().trim();
+        let nombre = $(this).find('td:eq(1)').text().trim();
+        let cantidad = $(this).find('td:eq(2)').text().trim();
+        let temporada = $(this).find('td:eq(3)').text().trim();
+        let descripcion = $(this).find('td:eq(4)').text().trim();
+        let precio = $(this).find('td:eq(5)').text().replace('$', '').trim();
+
+        if (id && nombre && cantidad && precio) {
+            productos.push({
+                id: id,
+                nombre: nombre,
+                cantidad: parseInt(cantidad),
+                temporada: temporada,
+                descripcion: descripcion,
+                precio: parseFloat(precio)
+            });
+        }
+    });
+
+    if (productos.length === 0) {
+        
+        toastr.error("No hay productos para confirmar", "Error");
+
+        return;
+    }
+
+    // Aquí enviamos los productos al backend 
+    //console.log("Productos para confirmar:", productos);
+    // Enviar por AJAX a tu PHP que procese la venta
+
+
+    // Por ejemplo:
+$.ajax({
+    url: 'http://127.0.0.1:8000/php-bd/generate-sale.php',
+    type: 'POST',
+    contentType: 'application/json',
+    dataType: 'json',
+    data: JSON.stringify({ productos: productos }),
+    success: function (response) {
+        // Verificar si el servidor respondió con un error
+        if (response.status === 'error') {
+            toastr.warning(response.message, "Sin stock");
+        } else {
+            toastr.success("Venta registrada 🛒✔", "¡Éxito!");
+        }
+        //console.log("Respuesta del servidor:", response);
+    },
+    error: function(xhr, status, error) {
+        console.error("Error en el servidor:", error);
+    }
+});
+
+
+});

@@ -1,5 +1,4 @@
 <?php
-//Primavera
 header("Access-Control-Allow-Origin: http://127.0.0.1:5500");  // Asegura CORS si accedes desde tu frontend
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Content-Type: application/json");
@@ -25,7 +24,7 @@ $query = "SELECT
     pro.precio, 
     TO_CHAR(pro.fecha_registro, 'TMDay, DD \"de\" TMMonth \"de\" YYYY') AS fecha_registro,
     TO_CHAR(v.fecha_hora_venta, 'TMDay, DD \"de\" TMMonth \"de\" YYYY') AS fecha_ultima_compra,
-    TO_CHAR(v.fecha_hora_venta, 'HH12:MI:SS') AS hora_ultima_compra
+    TO_CHAR(v.fecha_hora_venta, 'HH12:MI:SS AM') AS hora_ultima_compra
 FROM 
     productos pro
 JOIN 
@@ -44,10 +43,14 @@ LEFT JOIN (
 ) AS ultima_venta ON pro.id_producto = ultima_venta.id_producto AND ultima_venta.rn = 1
 LEFT JOIN
     ventas v ON ultima_venta.id_venta = v.id_venta
-WHERE activo = 'True' AND temporada = 'Primavera';";
-
-
-
+    
+    WHERE 
+    pro.stock > 0  -- Solo productos con stock disponible
+    AND pro.fecha_registro <= CURRENT_DATE - INTERVAL '1 month'  -- Registrados hace al menos 1 mes
+    AND activo = 'True'
+ORDER BY 
+    pro.fecha_registro DESC;";
+    
 //<th>Fecha de ingreso</th>
 //<th>Fecha de última compra</th>
 //<th>Hora de última compra</th>
@@ -64,7 +67,5 @@ echo json_encode($productos);
     echo json_encode(["error" => "No se pudo conectar a la base de datos"]);
 }
 // Enviamos los resultados como un JSON
-
-
 
 ?>

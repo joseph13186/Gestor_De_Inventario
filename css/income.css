@@ -1,21 +1,31 @@
 .resumen-container {
   background-color: #ffffff;
-  padding: 20px;
+  padding: 25px;
   border-radius: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  width: 500%; 
-  max-width: 1000px; /* Opcional: controla el ancho del contenido */
-  margin: 0 auto; /* Centra el contenedor */
+
   font-family: 'Segoe UI', Arial, sans-serif;
+
+  /* Por defecto sin scroll */
+
+  box-sizing: border-box;
+
 }
 
+.container {
+  margin-left: 220px;
+
+}
 
 .table {
   border-collapse: collapse;
   font-size: 14px;
-  margin: 15px auto; /* Centro adicional */
-  width: 100%; 
-  
+  margin: 15px 0;
+
+  table-layout: auto;
+  /* Asegura crecimiento dinámico */
+
+
 }
 
 
@@ -24,11 +34,13 @@
   color: white;
 }
 
-.table th, .table td {
+.table th,
+.table td {
   padding: 8px 15px;
   text-align: center;
   border: 1px solid #e0e0e0;
-  white-space: nowrap; /* Evita saltos de línea */
+  white-space: nowrap;
+  /* Evita saltos de línea */
 }
 
 .table th {
@@ -44,14 +56,41 @@
   color: white;
   font-weight: bold;
   font-size: 18px;
+  /*
+  Espacio interno (entre el borde y el contenido):
+  - 10px arriba y abajo
+  - 20px a los lados (izquierda y derecha)
+  */
+  padding: 10px 20px;
+  border-radius: 8px;
+  /*
+  margin: top   right   bottom  left
+  - top: 10px → Separación arriba.
+  - right: auto → El navegador calcula automáticamente (esto puede ayudarte a centrar el elemento horizontalmente si display: block).
+  - bottom: 5px → Separación abajo.
+  - left: 80px → Empuja el elemento hacia la derecha.
+  */
+  margin: 10px auto 5px 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.total-general-venta {
+  background-color: #008f8a;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
   padding: 10px 20px;
   border-radius: 8px;
   margin: 10px 0 5px auto;
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  position: relative;
-  left: 750px; /* Puedes ajustar más */
+  position: left;
+  left: 750px;
+  /* Puedes ajustar más */
 }
 
 
@@ -80,9 +119,7 @@ h3 {
   color: #008f8a;
   margin-bottom: 15px;
   font-size: 20px;
-  text-align: center;
-  position: relative;
-  right: 330px;
+  text-align: left;
 }
 
 body {
@@ -119,8 +156,136 @@ body {
   color: #08b6b1;
   margin-bottom: 10px;
   font-weight: bold;
-  position: relative;
-  left: 290px;
-  bottom: 90px;
 }
 
+
+
+/* General */
+.scroll-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+/* Evita que las tablas se achiquen a la fuerza */
+.scroll-wrapper .table {
+  width: max-content;
+  min-width: 100%;
+}
+
+/* Es para el diseño del scroll horizontal*/
+.scroll-wrapper::-webkit-scrollbar {
+  height: 16px;
+  /* ← Para scroll horizontal se usa height, no width */
+  /* Ancho del scrollbar */
+}
+
+.scroll-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+  /* Fondo del track (invisible o sutil) */
+}
+
+/*Este es el color que mostrara por defecto en cualquier momento
+    por eso habra que dejarlo transparente*/
+.scroll-wrapper::-webkit-scrollbar-thumb {
+  background-color: rgba(186, 6, 6, 0);
+  /* Color del "pulgar" de scroll */
+  border-radius: 10px;
+}
+
+/* Cuando pasemo el mouse por la barra se pone de ese color */
+.scroll-wrapper::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(43, 42, 42, 0.162);
+  /* Color al pasar el cursor */
+}
+
+.recommend-2{
+   h3 {
+        /* Evita que las líneas sean muy largas */
+        max-width: 90%;
+        /* Centra el texto */
+        text-align: center;
+        /* Asegura que el margen esté centrado */
+        margin: -17px auto;
+        color: #005b50;
+        font-size: 15px;
+    }
+
+}
+/* Diseño para pantallas grandes: mantenemos margen para la barra lateral */
+@media (min-width: 992px) {
+  .container {
+    margin-left: 150px;
+  }
+
+  .scroll-wrapper {
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .scroll-wrapper .table {
+    min-width: 1200px;
+  }
+
+}
+
+
+/*Para el boton de descargar el pdf*/
+.btn-descargar {
+  background-color: #007bff;
+  /* Azul */
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-descargar:hover {
+  background-color: #0056b3;
+  /* Azul más oscuro */
+  transform: scale(1.05);
+}
+
+.btn-descargar:active {
+  transform: scale(0.98);
+}
+
+.contenedor-boton {
+  display: flex;
+  justify-content: flex-start;
+  /* o center, flex-start */
+  margin-left: 15px;
+  /* Para mover hacia la derecha */
+}
+
+
+/* Diseño para pantallas pequeñas: ocupamos todo el ancho (por ejemplo, ocultamos la barra) */
+@media (max-width: 991px) {
+
+  /* 
+  .navigation-bar {
+    display: none;  O cambia a menú hamburguesa 
+  }*/
+  .container {
+    margin-left: 220px;
+    padding: 20px;
+  }
+
+  .resumen-container {
+    padding: 40px;
+  }
+
+  .scroll-wrapper {
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .scroll-wrapper .table {
+    min-width: 1500px;
+  }
+
+
+}
