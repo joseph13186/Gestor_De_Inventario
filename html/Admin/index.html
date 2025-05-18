@@ -88,7 +88,7 @@
                 <i class="fa-solid fa-chevron-down"></i>
                 <ul class="dropdown-menu">
                     <li><a href="#">Ver empleados</a></li>
-                    <li><a href="#">Cerrar sesión</a></li>
+                    <li><a href="#" onclick="cerrarSesion()">Cerrar sesión</a></li>
                 </ul>
             </div>
         </div>
@@ -218,6 +218,15 @@
         <script src="/js-bd/get-products-summer.js"></script>
         <script src="/js-bd/get-products-autumn.js"></script>
         <script src="/js-bd/get-products-winter.js"></script>
+        <script src="/js/login.js"></script>
+
+        
+<script>
+    function cerrarSesion() {
+    localStorage.clear();
+    window.location.href = "/html/login.html";
+} 
+</script>
     
 
 </body>

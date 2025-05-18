@@ -1,28 +1,49 @@
 $(document).ready(function () {
     $("#loginForm").submit(function (event) {
-        event.preventDefault(); // Evita que el formulario se envíe de forma tradicional
+        event.preventDefault(); // Evita el envío normal del formulario
 
         let correo = $("#correo").val();
         let password = $("#password").val();
 
         $.ajax({
-            // Corremos el servicio php desde la carpeta principal del proyectp
-            // y ademas debemos de especifcar la carpeta donde se encuentra los archivos php
-            url: "http://127.0.0.1:8000/php/login.php", // Archivo PHP que procesa el login
+            url: "http://127.0.0.1:8000/php/login.php", // Ajusta si tu archivo PHP está en otra ruta
             method: "POST",
-            data: { correo: correo, password: password },
+            dataType: "json",
+            data: {
+                correo: correo,
+                password: password
+            },
             success: function (respuesta) {
-                // La respuesta ya es un objeto JSON, no es necesario hacer JSON.parse
+                console.log("Respuesta completa:", respuesta);
+                console.log("Nombre:", respuesta.nombre);
+                // Verifica que sea un login exitoso
                 if (respuesta.status === "success") {
-                    window.location.href = "/html/Admin/index.html"; // Redirige si el login es correcto
+                    if (respuesta.rol === "Administrador") {
+                        localStorage.setItem("nombreUsuario", respuesta.nombre);
+                        console.log("Guardado en localStorage:", localStorage.getItem("nombreUsuario"));
+                        window.location.href = "/html/Admin/index.html"; // Ruta del dashboard para administradores
+                    } else if (respuesta.rol === "Empleado") {
+                        localStorage.setItem("nombreUsuario", respuesta.nombre);
+                        window.location.href = "/html/Empleado/index.html"; // Ruta del dashboard para empleados
+                    } else {
+                        alert("Rol no reconocido.");
+                    }
                 } else {
-                    alert(respuesta.message); // Muestra el mensaje de error devuelto desde PHP
+                    alert(respuesta.message); // Muestra error desde PHP
                 }
             },
             error: function () {
-                alert("Error en la solicitud.");
-                console.log(correo, password); // Verifica que se están obteniendo correctamente
+                alert("Error al conectar con el servidor.");
             }
         });
     });
 });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+const nombre = localStorage.getItem("nombreUsuario");
+console.log("Nombre guardado:", nombre);
+document.querySelector(".user-name").textContent = nombre || "Usuario";
+});
+
+
