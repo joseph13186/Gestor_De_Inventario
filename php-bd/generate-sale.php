@@ -30,10 +30,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($data['productos']) && is_arr
         foreach ($productos as $p) {
             $totalVenta += floatval($p['precio']) * intval($p['cantidad']);
         }
+        // 4) Recuperamos el valor que fue enviado 
+        // y ahora lo enviamos como parametro para que registre las ventas segun el usuario
+
+        // Hacemos una validaciones extrar para que no se filtre un dato no deseado del id
+        // Validar el ID de usuario
+                $id_usuario = intval($data['id_usuario'] ?? 0);
+
+if ($id_usuario <= 0) {
+    //http_response_code(400);
+    //echo json_encode(["success" => false, "message" => "ID de usuario no válido"]);
+       echo json_encode(["success" => false, "message" => "ID de usuario no válido"]);
+      $response = [
+                    'status' => 'validacionUsuario',
+                    'message' => 'Usuario no encontrado'
+                ];
+    echo json_encode($response);    
+    
+    exit;
+}
+
+// Opcional: Verificar que el usuario exista y esté activo
+$stmt = $pdo->prepare("SELECT id_usuario, activo FROM usuarios WHERE id_usuario = ?");
+$stmt->execute([$id_usuario]);
+$usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$usuario) {
+    //http_response_code(404);
+    echo json_encode(["success" => false, "message" => "Usuario no encontrado"]);
+      $response = [
+                    'status' => 'validacionUsuario',
+                    'message' => 'Usuario no encontrado'
+                ];
+    echo json_encode($response);    
+    exit;
+}
+
+if (!$usuario['activo']) {
+    //http_response_code(403);
+    //echo json_encode(["success" => false, "message" => "Usuario inactivo"]);
+     $response = [
+                    'status' => 'validacionUsuario',
+                    'message' => 'Este Usuario se encuentra actualmente inactivo, consulte con el administrador'
+                ];
+    echo json_encode($response);
+    exit;
+}
+
+
 
         // Insertar cabecera
         $stmt = $pdo->prepare("INSERT INTO ventas (id_usuario, total_venta) VALUES (?, ?) RETURNING id_venta");
-        $stmt->execute([1, $totalVenta]); // ID de usuario fijo
+        $stmt->execute([$id_usuario, $totalVenta]); // ID de usuario fijo
         $id_venta = $stmt->fetchColumn();
 
         // Procesar cada producto

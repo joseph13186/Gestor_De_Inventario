@@ -20,6 +20,13 @@ $(document).ready(function () {
                 if (respuesta.status === "success") {
                     if (respuesta.rol === "Administrador") {
                         localStorage.setItem("nombreUsuario", respuesta.nombre);
+                        
+                        // 1) Cuando el usuario hace login exitosamente, 
+                        // recibimos una respuesta del servidor que incluye id_usuario.
+                        // Guardamos este valor en el localStorage con: 
+                        // localStorage.setItem("idUsuario", respuesta.id_usuario)
+                        localStorage.setItem("idUsuario", respuesta.id_usuario);
+
                         console.log("Guardado en localStorage:", localStorage.getItem("nombreUsuario"));
                         window.location.href = "/html/Admin/index.html"; // Ruta del dashboard para administradores
                     } else if (respuesta.rol === "Empleado") {
@@ -42,7 +49,10 @@ $(document).ready(function () {
 
 document.addEventListener("DOMContentLoaded", function () {
 const nombre = localStorage.getItem("nombreUsuario");
+const id_usuario = localStorage.getItem("idUsuario");
+
 console.log("Nombre guardado:", nombre);
+console.log("Id:", id_usuario);
 document.querySelector(".user-name").textContent = nombre || "Usuario";
 });
 

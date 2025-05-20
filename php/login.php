@@ -48,7 +48,9 @@ try {
             "status" => "success",
             "message" => "Inicio de sesión correcto",
             "rol" => $usuario["rol"],
-            "nombre" => $nombre
+            "nombre" => $nombre,
+            "id_usuario" => $usuario["id_usuario"] // Regresa bien el id
+
         ]);
     } else {
         echo json_encode(["status" => "error", "message" => "Contraseña incorrecta"]);

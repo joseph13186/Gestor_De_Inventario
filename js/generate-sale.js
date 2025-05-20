@@ -7,6 +7,7 @@ toastr.options = {
 };
 
 
+
 $(document).ready(function () {
 
     // Esto llenará el array products con la respuesta del servidor (una lista de objetos con id, name, season, description, price, etc.).
@@ -314,20 +315,34 @@ $('#btnNuevoCompra').click(function () {
     //console.log("Productos para confirmar:", productos);
     // Enviar por AJAX a tu PHP que procese la venta
 
+    // 2) En cualquier otra página de la aplicación (como esta de generar ventas):
+    //Recuperamos el ID con: const id_usuario = localStorage.getItem("idUsuario")
+    //Esto funciona porque el localStorage es accesible 
+    // desde cualquier página del mismo dominio (mismo protocolo, dominio y puerto).
 
-    // Por ejemplo:
+const id_usuario = localStorage.getItem("idUsuario");
 $.ajax({
     url: 'http://127.0.0.1:8000/php-bd/generate-sale.php',
     type: 'POST',
     contentType: 'application/json',
     dataType: 'json',
-    data: JSON.stringify({ productos: productos }),
+    // 3) Lo incluimos en los datos que 
+    // enviamos al servidor: 
+    // data: JSON.stringify({ productos: productos, id_usuario: id_usuario })
+    data: JSON.stringify({ 
+        productos: productos, 
+        id_usuario: id_usuario  // <-- AGREGADO
+    }),
     success: function (response) {
         // Verificar si el servidor respondió con un error
         if (response.status === 'error') {
-            toastr.warning(response.message, "Sin stock");
-        } else {
+            toastr.warning(response.message, "Advertencia");
+        }else if (response.status === 'validacionUsuario') {
+            toastr.error(response.message, "¡Problemas con el usuario actual!");
+        }
+         else {
             toastr.success("Venta registrada 🛒✔", "¡Éxito!");
+            //console.log("Id de generate",id_usuario)
         }
         //console.log("Respuesta del servidor:", response);
     },
